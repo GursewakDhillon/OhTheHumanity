@@ -9,7 +9,12 @@
 		<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
 		
     <link rel="icon" href="https://v4-alpha.getbootstrap.com/favicon.ico">
-
+	 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+	 <script>
+		 function onSubmit(token) {
+			 document.getElementById("recaptchaForm").submit();
+		 }
+	 </script>
     <title>Home</title>
   </head>
 
@@ -50,6 +55,10 @@
 
     <div class="container">
       <h1>Home</h1>
+				<form id="recaptchaForm" action="recaptcha" method="POST" data-callback="verifyRecaptcha">
+					<div class="g-recaptcha" data-sitekey="6LeuJxkUAAAAACp5mLL7oD8CRIq0ObIVWP9UwM2t"></div>
+					<input type="submit" value="Submit">
+				</form>
     </div>
 
 
