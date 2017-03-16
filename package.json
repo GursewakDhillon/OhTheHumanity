@@ -1,0 +1,19 @@
+{
+  "name": "oh-the-humanity",
+  "version": "1.0.0",
+  "description": "a game by humans, for humans only",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@csil-git1.cs.surrey.sfu.ca:pza3/final-project.git"
+  },
+  "author": "Gursewak Dhillon, Andy Dong, Ben Siggers, Michael Zhang",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2"
+  }
+}
