@@ -1,0 +1,9 @@
+{
+	"development": {
+                "database" : "ohthehumanity",
+                "username" : "root",
+                "password" : "",
+                "host" : "localhost",
+                "port" : 3306
+        }
+}
