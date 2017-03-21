@@ -1,5 +1,3 @@
-"use strict";
-
 module.exports = function(sequelize, DataTypes) {
   var Achievement = sequelize.define("Achievement", {
     name: 	        DataTypes.STRING,
@@ -7,7 +5,7 @@ module.exports = function(sequelize, DataTypes) {
   }, {
       classMethods: {
       associate: function(models) {
-        Achievement.hasOne(models.User)
+        Achievement.hasOne(models.User);
       }
     }
   });

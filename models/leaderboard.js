@@ -1,5 +1,3 @@
-"use strict";
-
 module.exports = function(sequelize, DataTypes) {
   var Leaderboard = sequelize.define("Leaderboard", {
     points: 	    DataTypes.INTEGER,
@@ -7,7 +5,7 @@ module.exports = function(sequelize, DataTypes) {
   }, {
       classMethods: {
       associate: function(models) {
-        Leaderboard.hasOne(models.User)
+        Leaderboard.hasOne(models.User);
       }
     }
   });
