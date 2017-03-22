@@ -16,6 +16,38 @@ execute 'ntp_restart' do
   command 'service ntp restart'
 end
 
+# install mysql
+package "mysql-server"
+
+execute "run-mysql-secure-install-1" do
+  command "mysqladmin -u root password mysecretpassword"
+end
+
+#execute "run-mysql-secure-install-2" do
+#  command "mysql -u root -pmysecretpassword -e \"UPDATE mysql.user SET Password=PASSWORD('mysecretpassword') WHERE User='root'\""
+#end
+
+execute "run-mysql-secure-install-3" do
+  command "mysql -u root -pmysecretpassword -e \"DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1')\""
+end
+
+execute "run-mysql-secure-install-4" do
+  command "mysql -u root -pmysecretpassword -e \"DELETE FROM mysql.user WHERE User=''\""
+end
+
+execute "run-mysql-secure-install-5" do
+  command "mysql -u root -pmysecretpassword -e \"DELETE FROM mysql.db WHERE Db='test' OR Db='test\_%'\""
+end
+
+execute "run-mysql-secure-install-6" do
+  command "mysql -u root -pmysecretpassword -e \"FLUSH PRIVILEGES\""
+  # need to create database here
+end
+
+execute 'mysql_restart' do
+  command 'service mysql restart'
+end
+
 # Install nginx via apt-get
 package "nginx"
 # Override the default nginx config with the one in our cookbook.
@@ -41,7 +73,7 @@ execute "npm_install" do
   command "sudo npm install -g node-pre-gyp && npm install --no-bin-links"
 end
 
-Populate the DB
+# Populate the DB
 execute "app_db" do
   cwd "/home/ubuntu/project"
   command "node createDb.js"
