@@ -13,6 +13,10 @@ app.get('/', function(request, response) {
   response.sendFile(path.join(__dirname, '/views/home.html'));
 });
 
+app.get('/leaderboards', function(request, response) {
+  response.sendFile(path.join(__dirname, '/views/leaderboards.html'));
+});
+
 app.post('/recaptcha', function(request, response) {
         verifyRecaptcha(request.body["g-recaptcha-response"], function(success) {
                 if (success) {
