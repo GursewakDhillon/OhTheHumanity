@@ -2,7 +2,7 @@
 Description=Oh-The-Humanity
  
 [Service]
-ExecStart=/usr/bin/node /home/ubuntu/project/app.js
+ExecStart=/usr/bin/node /home/ubuntu/project/server.js
 Restart=always
 RestartSec=5
 User=root
