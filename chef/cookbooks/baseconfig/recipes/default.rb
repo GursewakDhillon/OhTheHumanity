@@ -41,12 +41,23 @@ end
 
 execute "run-mysql-secure-install-6" do
   command "mysql -u root -pmysecretpassword -e \"FLUSH PRIVILEGES\""
-  # need to create database here
 end
 
 execute 'mysql_restart' do
   command 'service mysql restart'
 end
+
+execute "run-mysql-createdb" do
+  command "mysql -u root -pmysecretpassword -e \"CREATE DATABASE ohthehumanity\""
+end
+
+execute "run-mysql-createuser" do
+   command "mysql -u root -pmysecretpassword -e \"CREATE USER 'ohthehumanity'@'localhost' IDENTIFIED BY 'mysecretpassword'\""
+end 
+
+execute "run-mysql-grantprivs" do
+   command "mysql -u root -pmysecretpassword -e \"GRANT ALL PRIVILEGES ON ohthehumanity. * TO ohthehumanity@localhost\""
+end 
 
 # Install nginx via apt-get
 package "nginx"
