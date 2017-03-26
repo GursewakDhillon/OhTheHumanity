@@ -9,7 +9,7 @@ models.sequelize.sync().then(function() {
         var users = user_data.users;
 
         users.forEach(function(user) {
-            console.log(user);
+            //console.log(user);
             bcrypt.hash(user.credentials, 10, function(err, hash) {
               
             
@@ -21,7 +21,7 @@ models.sequelize.sync().then(function() {
                             credentials: hash, 
                             validated: user.validated });
            
-        });
+			});
 
         });            
            

@@ -42,17 +42,39 @@ app.get('/', function(request, response) {
 app.post('/', function(request, response) {
   
     var user_name = request.body.username;
-    var password = request.body.credential;
+    var password = request.body.password;
     console.log("post received: %s %s", user_name, password);
     //bcrypt.compare(password, hash, function(err, res) {
      models.User.findOne({
                 where: {
-                    username: user_name,
-                    
+                    username: user_name,                    
                 }
             }).then(function(login) {
+                //console.log(login.credentials);
                 console.log("Your are successfully login");
-               response.redirect('/home');   
+               
+               bcrypt.compare(password, login.credentials, function(err, res) {
+                if (res) {
+                    
+                    var token=generateToken();
+                                      
+                    models.session.create({
+                        
+                        sessionKey: token,
+                        sessionUser: login.id,
+                        
+                    });
+                    
+                    response.set('Set-Cookie',token);
+                    response.redirect('/home'); 
+                    console.log("Successfully logged into the website!");
+
+                } else {
+                    console.log("The user credential do not match!");
+                    response.redirect('/');
+                    
+                }
+            });  
                 
             });
 
