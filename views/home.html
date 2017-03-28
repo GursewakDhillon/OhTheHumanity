@@ -14,6 +14,22 @@
 		 function onSubmit(token) {
 			 document.getElementById("recaptchaForm").submit();
 		 }
+
+     function makePOSTRequest() {
+         //document.getElementsByClassName("navbar-toggler-icon").click();
+        var url ="/logout";
+        httpRequest = new XMLHttpRequest();
+        httpRequest.open("GET", url, true);
+        
+        httpRequest.setRequestHeader("Content-type", "application/json");
+
+        httpRequest.onreadystatechange = function() {
+            if(httpRequest.readyState == 4 && httpRequest.status == 200) {
+                console.log('The user is successfully logged out!');
+            }
+        }
+        httpRequest.send();
+    }
     
     window.onload = function(){ 
       document.getElementById("leaderboard").onclick = function () {
@@ -60,6 +76,10 @@
           <input class="form-control mr-sm-2" placeholder="Search" type="text">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
+       
+       <form mehtod ="get" action="/logout"> 
+       <button class="btn btn-outline-success my-2 my-sm-0" name="logout" value="logout">logout</button>
+       </form>
       </div>
     </nav>
 
