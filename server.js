@@ -6,12 +6,19 @@ var fs = require('fs');
 var crypto = require('crypto');
 var models = require('./models');
 var app = express();
+var session= require('express-session');
 const bcrypt = require('bcrypt');
 
 
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({   // to support URL-encoded bodies
     extended: true
+}));
+
+app.use(session({
+    secret: '2C44-4D44-WppQ38S',
+    resave: true,
+    saveUninitialized: true
 }));
 
 var generateToken = function() {
@@ -64,6 +71,7 @@ app.post('/', function(request, response) {
                                 
                             });
                             
+                            request.session.userSession=token;
                             response.set('Set-Cookie',token);
                             response.redirect('/home'); 
                             console.log("Successfully logged into the website!");
@@ -88,15 +96,40 @@ app.post('/', function(request, response) {
 
 });
 
-app.get('/home', function(request, response) {
+// Authentication and Authorization Middleware
+function checkAuth(req, res, next) {
+
+  var userSession =req.session.userSession;
+  models.session.findOne({
+                where: {
+                    sessionKey: userSession,
+                }
+            }).then(function(user_auth) {
+
+              if (req.session && req.session.userSession === user_auth.sessionKey)
+              {
+                  return next();
+              }else {
+
+                  return res.sendStatus(401);
+
+                }
+
+            });
+  
+   
+};
+
+
+app.get('/home', checkAuth,function(request, response) {
   response.sendFile(path.join(__dirname, '/views/home.html'));
 });
 
-app.get('/leaderboards', function(request, response) {
+app.get('/leaderboards', checkAuth,function(request, response) {
   response.sendFile(path.join(__dirname, '/views/leaderboards.html'));
 });
 
-app.post('/recaptcha', function(request, response) {
+app.post('/recaptcha', checkAuth,function(request, response) {
         verifyRecaptcha(request.body["g-recaptcha-response"], function(success) {
                 if (success) {
                         response.end("Success!");
@@ -107,7 +140,13 @@ app.post('/recaptcha', function(request, response) {
 });
 
 
-
+// Logout endpoint
+app.get('/logout', function (req, res) {
+  //console.log(req);
+  req.session.destroy();
+  res.redirect('/');
+ 
+});
 
 app.listen(3000, function () {
 	console.log('Listening on port 3000!');

@@ -21,7 +21,6 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
        Session.belongsTo(models.User, {
           onDelete: "CASCADE",
-		  //foreignKey: 'sessionUser'
 		  });
 		
       }
