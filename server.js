@@ -71,7 +71,7 @@ app.post('/', function(request, response) {
                                 
                             });
                             
-                            request.session.userSession=token;
+                            request.session.user=login.id;
                             response.set('Set-Cookie',token);
                             response.redirect('/home'); 
                             console.log("Successfully logged into the website!");
@@ -99,23 +99,15 @@ app.post('/', function(request, response) {
 // Authentication and Authorization Middleware
 function checkAuth(req, res, next) {
 
-  var userSession =req.session.userSession;
-  models.session.findOne({
-                where: {
-                    sessionKey: userSession,
-                }
-            }).then(function(user_auth) {
+  var userSession =req.session.user;
+  //console.log(userSession);
+ if (req.session.user)
+    {
+        return next();
+    }else {
 
-              if (req.session && req.session.userSession === user_auth.sessionKey)
-              {
-                  return next();
-              }else {
-
-                  return res.sendStatus(401);
-
-                }
-
-            });
+            return res.sendStatus(401);
+     }
   
    
 };
