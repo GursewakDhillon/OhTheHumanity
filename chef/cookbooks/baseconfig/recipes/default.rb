@@ -8,6 +8,7 @@ end
 
 # Base configuration recipe in Chef.
 package "wget"
+package "python"
 package "ntp"
 cookbook_file "ntp.conf" do
   path "/etc/ntp.conf"
