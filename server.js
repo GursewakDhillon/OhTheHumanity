@@ -161,7 +161,7 @@ app.post('/registration', function (req, res) {
 
       }).then(function(user_register) {
 
-        res.end('User is successfully added!');    
+        res.redirect('/');    
 
       });
 
