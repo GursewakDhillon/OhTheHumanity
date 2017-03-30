@@ -42,6 +42,19 @@ app.get('/style.css', function(request, response) {
 });
 
 
+app.get('/signup', function(request, response) {
+  response.sendFile(path.join(__dirname, './views/registration.html'));
+});
+
+app.get('/validation.js', function(request, response) {
+  response.writeHead(200, {'Content-type' : 'application/javascript'});
+     
+    var fileContents = fs.readFileSync('./views/validation.js', {encoding: 'utf8'});
+    response.write(fileContents);
+  response.end();
+  
+});
+
 app.get('/', function(request, response) {
   response.sendFile(path.join(__dirname, '/views/login.html'));
 });
@@ -131,6 +144,30 @@ app.post('/recaptcha', checkAuth,function(request, response) {
         });
 });
 
+
+// registration endpoint
+app.post('/registration', function (req, res) {
+  
+  bcrypt.hash(req.body.password, 10, function(err, hash)  {
+
+      models.User.create({
+        fullname:    req.body.fullname,
+        email:       req.body.email,
+        avatar:      req.body.avatar,
+        username:    req.body.username,
+        credentials: hash,
+        validated:   1
+
+
+      }).then(function(user_register) {
+
+        res.end('User is successfully added!');    
+
+      });
+
+  });
+ 
+});
 
 // Logout endpoint
 app.get('/logout', function (req, res) {

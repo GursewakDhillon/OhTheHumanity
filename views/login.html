@@ -13,9 +13,10 @@
 	    <img src="./images/user_photo.png" alt="Avatar" class="avatar">
 	  </div>
       
-      <form method ="post">  
+       
 
 	  <div class="container">
+	  	<form method ="post"> 
 	    <label><b>Username</b></label>
 	    <input type="text" placeholder="Enter Username" name="username" required>
 
@@ -23,7 +24,13 @@
 	    <input type="password" placeholder="Enter Password" name="password" required>
 
 	    <button type="submit" value="login">Login</button>
-	    <button>Sign Up</button>
+	    </form>
+
+	    <form mehtod ="get" action="/signup"> 
+       		<button name="signup" value="signup">Sign Up</button>
+       </form>
+
+
 	    <input type="checkbox" checked="checked"> Remember me
 	  </div>
 
@@ -31,6 +38,6 @@
 	    <button type="button" class="cancelbtn">Cancel</button>
 	    <span class="psw">Forgot <a href="#">password?</a></span>
 	  </div>
-	</form>
+	
   </body>
 </html>
