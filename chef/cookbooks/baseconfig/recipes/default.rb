@@ -10,6 +10,10 @@ end
 package "wget"
 package "python"
 package "ntp"
+package "make"
+package "g++"
+package "bcrypt"
+package "python-bcrypt"
 cookbook_file "ntp.conf" do
   path "/etc/ntp.conf"
 end
@@ -82,7 +86,7 @@ package "nodejs"
 # Install package dependencies and run npm install
 execute "npm_install" do
   cwd "/home/ubuntu/project"
-  command "sudo npm install -g node-pre-gyp && npm install --no-bin-links"
+  command "sudo npm install -g node-pre-gyp && sudo npm install --no-bin-links"
 end
 
 # Populate the DB
