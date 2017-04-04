@@ -84,9 +84,14 @@ end
 package "nodejs"
  
 # Install package dependencies and run npm install
+execute "npm_install_gyp" do
+  cwd "/home/ubuntu/project"
+  command "npm install -g node-pre-gyp"
+end
+
 execute "npm_install" do
   cwd "/home/ubuntu/project"
-  command "sudo npm install -g node-pre-gyp && sudo npm install --no-bin-links"
+  command "npm install"
 end
 
 # Populate the DB
