@@ -19,7 +19,10 @@ On successful install, vagrant output should look like this:
 ==> default: [2017-04-03T21:56:42+00:00] INFO: Report handlers complete
 ```
 
+#Application URLs
 
+HTTP: http://localhost:8080
+HTTPS (self-signed cert): https://localhost:8081
 
 #Database notes
 
@@ -34,6 +37,3 @@ Note: vagrant is now setup, which contains:
 - creation of 'ohthehumanity' database, and 'ohthehuanity' user
 - nginx install and configuration, proxying 3000->80
 
-To run, use: vagrant up
-
-Application will be listening on http://localhost:8080 after startup.

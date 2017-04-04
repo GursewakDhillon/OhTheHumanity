@@ -14,9 +14,25 @@ package "make"
 package "g++"
 package "bcrypt"
 package "python-bcrypt"
+# Install nginx via apt-get
+package "nginx"
+
 cookbook_file "ntp.conf" do
   path "/etc/ntp.conf"
 end
+
+execute "create-nginx-ssl-dir" do
+  command "mkdir -p /etc/nginx/ssl"
+end
+
+cookbook_file "nginx.crt" do
+  path "/etc/nginx/ssl/nginx.crt"
+end
+
+cookbook_file "nginx.key" do
+  path "/etc/nginx/ssl/nginx.key"
+end
+
 execute 'ntp_restart' do
   command 'service ntp restart'
 end
@@ -64,8 +80,6 @@ execute "run-mysql-grantprivs" do
    command "mysql -u root -pmysecretpassword -e \"GRANT ALL PRIVILEGES ON ohthehumanity. * TO ohthehumanity@localhost\""
 end 
 
-# Install nginx via apt-get
-package "nginx"
 # Override the default nginx config with the one in our cookbook.
 cookbook_file "nginx-default" do
   path "/etc/nginx/sites-available/default"
