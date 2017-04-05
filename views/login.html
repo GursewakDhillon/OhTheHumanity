@@ -7,8 +7,8 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<script src="https://use.fontawesome.com/47386ccac3.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
-		<script type="text/javascript">
+		<script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
+		<script>
 			// Initialize Firebase
 			var config = {
 				apiKey: "AIzaSyDZQTUi5bZYnb1ZoXDzIUnZ8U0ksvc40Bs",
@@ -19,25 +19,43 @@
 				messagingSenderId: "915346635051"
 			};
 			firebase.initializeApp(config);
-		  
+		</script>
+
+		<script type="text/javascript">
 			function signIn() {
 				if (!firebase.auth().currentUser) {
-					var provider = new firebase.auth.GoogleAuthProvider();
-     			provider.addScope('https://www.googleapis.com/auth/plus.login');
-					firebase.auth().signInWithPopup(provider).then(function(result) {
-						alert(result.user);
-					}).catch(function(error) {
-						alert(error);
+					var email = document.getElementById('email').value;
+					var password = document.getElementById('password').value;					
+        	firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+						// Handle Errors here.
+						var errorCode = error.code;
+						var errorMessage = error.message;
+						if (errorCode === 'auth/wrong-password') {
+							alert('Wrong password.');
+						} else {
+							alert(errorMessage);
+						}
+						console.log(error);
 					});
 				}
-				else {
-					alert("already authorized")
+				else
+				{
+					firebase.auth().signOut();
 				}
+			}
 
+			function initApp() {
+				firebase.auth().onAuthStateChanged(function(user) {
+					if (user) {
+						alert(user.email);
+						debugger;
+					}
+				});
+			document.getElementById('googleauth').addEventListener('click', signIn, false);				
 			}
 
     window.onload = function() {
-			document.getElementById('googleauth').addEventListener('click', signIn, false);
+			initApp();
     };
 			
 		</script>
@@ -50,17 +68,17 @@
     <div class="container">
 	  	<form method ="post"> 
 	    <label><b>Username</b></label>
-	    <input type="text" placeholder="Enter Username" name="username" required>
+	    <input id="email" type="text" placeholder="Enter Username" name="username" required>
 
 	    <label><b>Password</b></label>
-	    <input type="password" placeholder="Enter Password" name="password" required>
+	    <input id="password" type="password" placeholder="Enter Password" name="password" required>
 
 	    <button type="submit" value="login">Login</button>
 	    </form>
 
-			<form mehtod ="get"> 
-				<button id="googleauth" type="submit" value="logingoogle">Login using Google Account</button>
-			</form>
+
+				<button id="googleauth" value="logingoogle">Login using Firebase</button>
+
 
 	    <form mehtod ="get" action="/signup"> 
        		<button name="signup" value="signup">Sign Up</button>
