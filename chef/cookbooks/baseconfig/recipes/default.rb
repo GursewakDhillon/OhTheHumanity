@@ -103,9 +103,14 @@ execute "npm_install_gyp" do
   command "npm install -g node-pre-gyp"
 end
 
+execute "npm_install_bcrypt" do
+  cwd "/home/ubuntu/project"
+  command "npm install bcrypt --unsafe-perm --no-bin-links"
+end
+
 execute "npm_install" do
   cwd "/home/ubuntu/project"
-  command "npm install"
+  command "npm install --unsafe-perm"
 end
 
 # Populate the DB
