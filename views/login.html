@@ -3,19 +3,51 @@
   <head>
     <title>OhTheHumanity</title>
     <meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<script src="https://use.fontawesome.com/47386ccac3.js"></script>
-</head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="https://use.fontawesome.com/47386ccac3.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+		<script type="text/javascript">
+			// Initialize Firebase
+			var config = {
+				apiKey: "AIzaSyDZQTUi5bZYnb1ZoXDzIUnZ8U0ksvc40Bs",
+				authDomain: "ohthehumanity-8dafd.firebaseapp.com",
+				databaseURL: "https://ohthehumanity-8dafd.firebaseio.com",
+				projectId: "ohthehumanity-8dafd",
+				storageBucket: "ohthehumanity-8dafd.appspot.com",
+				messagingSenderId: "915346635051"
+			};
+			firebase.initializeApp(config);
+		  
+			function signIn() {
+				if (!firebase.auth().currentUser) {
+					var provider = new firebase.auth.GoogleAuthProvider();
+     			provider.addScope('https://www.googleapis.com/auth/plus.login');
+					firebase.auth().signInWithPopup(provider).then(function(result) {
+						alert(result.user);
+					}).catch(function(error) {
+						alert(error);
+					});
+				}
+				else {
+					alert("already authorized")
+				}
+
+			}
+
+    window.onload = function() {
+			document.getElementById('googleauth').addEventListener('click', signIn, false);
+    };
+			
+		</script>
+  </head>
+
   <body>
 	  <div class="imgcontainer">
 	    <img src="./images/user_photo.png" alt="Avatar" class="avatar">
 	  </div>
-      
-       
-
-	  <div class="container">
+    <div class="container">
 	  	<form method ="post"> 
 	    <label><b>Username</b></label>
 	    <input type="text" placeholder="Enter Username" name="username" required>
@@ -26,9 +58,13 @@
 	    <button type="submit" value="login">Login</button>
 	    </form>
 
+			<form mehtod ="get"> 
+				<button id="googleauth" type="submit" value="logingoogle">Login using Google Account</button>
+			</form>
+
 	    <form mehtod ="get" action="/signup"> 
        		<button name="signup" value="signup">Sign Up</button>
-       </form>
+      </form>
 
 
 	    <input type="checkbox" checked="checked"> Remember me
@@ -40,4 +76,5 @@
 	  </div>
 	
   </body>
+
 </html>
