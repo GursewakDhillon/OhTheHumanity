@@ -17,6 +17,15 @@
           "username": "Bar",
           "credentials": "456",
           "validated": 1
-      }
+      },
+      {
+          "id": 3,
+          "fullname": "Ben Siggers",
+          "email": "bsiggers@gmail.com",
+          "avatar": 1,
+          "username": "Foo",
+          "credentials": "123",
+          "validated": 1
+      }      
   ]
 }

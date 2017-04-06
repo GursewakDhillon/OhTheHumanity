@@ -8,57 +8,7 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<script src="https://use.fontawesome.com/47386ccac3.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
-		<script>
-			// Initialize Firebase
-			var config = {
-				apiKey: "AIzaSyDZQTUi5bZYnb1ZoXDzIUnZ8U0ksvc40Bs",
-				authDomain: "ohthehumanity-8dafd.firebaseapp.com",
-				databaseURL: "https://ohthehumanity-8dafd.firebaseio.com",
-				projectId: "ohthehumanity-8dafd",
-				storageBucket: "ohthehumanity-8dafd.appspot.com",
-				messagingSenderId: "915346635051"
-			};
-			firebase.initializeApp(config);
-		</script>
-
-		<script type="text/javascript">
-			function signIn() {
-				if (!firebase.auth().currentUser) {
-					var email = document.getElementById('email').value;
-					var password = document.getElementById('password').value;					
-        	firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-						// Handle Errors here.
-						var errorCode = error.code;
-						var errorMessage = error.message;
-						if (errorCode === 'auth/wrong-password') {
-							alert('Wrong password.');
-						} else {
-							alert(errorMessage);
-						}
-						console.log(error);
-					});
-				}
-				else
-				{
-					firebase.auth().signOut();
-				}
-			}
-
-			function initApp() {
-				firebase.auth().onAuthStateChanged(function(user) {
-					if (user) {
-						alert(user.email);
-						debugger;
-					}
-				});
-			document.getElementById('googleauth').addEventListener('click', signIn, false);				
-			}
-
-    window.onload = function() {
-			initApp();
-    };
-			
-		</script>
+		<script src="login.js"></script>
   </head>
 
   <body>
@@ -66,24 +16,16 @@
 	    <img src="./images/user_photo.png" alt="Avatar" class="avatar">
 	  </div>
     <div class="container">
-	  	<form method ="post"> 
-	    <label><b>Username</b></label>
-	    <input id="email" type="text" placeholder="Enter Username" name="username" required>
 
-	    <label><b>Password</b></label>
-	    <input id="password" type="password" placeholder="Enter Password" name="password" required>
-
-	    <button type="submit" value="login">Login</button>
-	    </form>
-
-
-				<button id="googleauth" value="logingoogle">Login using Firebase</button>
-
+			<label><b>Email</b></label>
+			<input id="email" type="text" placeholder="Enter Email (you@example.com)" name="email" required>
+			<label><b>Password</b></label>
+			<input id="password" type="password" placeholder="Enter Password" name="password" required>
+			<button id="submitlogin" type="submit" value="login">Login</button>
 
 	    <form mehtod ="get" action="/signup"> 
        		<button name="signup" value="signup">Sign Up</button>
       </form>
-
 
 	    <input type="checkbox" checked="checked"> Remember me
 	  </div>
