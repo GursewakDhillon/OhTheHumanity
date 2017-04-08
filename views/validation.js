@@ -129,13 +129,13 @@ function createUser()
         console.log(error);
         return;
       }).then(function() {
-        alert('success!');
+        console.log("user successfully registered");
         post('/registration', { "email": email, "avatar": avatar, "username": username, "fullname": fullname });
       });
     }
     else
     {
-      alert('validation errors, please correct before continuing')
+      console.log("There are still validation errors, not adding user");
     }
 }
 
