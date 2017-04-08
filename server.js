@@ -188,7 +188,6 @@ app.post('/registration', function (req, res) {
         email:       req.body.email,
         avatar:      req.body.avatar,
         username:    req.body.username,
-        credentials: hash,
         validated:   1
 
 
@@ -232,3 +231,7 @@ function verifyRecaptcha(key, callback) {
                 });
         });
 }
+
+app.get('/test', checkAuth,function(request, response) {
+  response.sendFile(path.join(__dirname, '/views/test_login.html'));
+});
