@@ -8,6 +8,8 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 		<link rel="icon" href="https://v4-alpha.getbootstrap.com/favicon.ico">
 	 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+   <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
+   <script src="logout.js"></script>  
 	 <script>
 		 function onSubmit(token) {
 			 document.getElementById("recaptchaForm").submit();
@@ -32,7 +34,8 @@
     window.onload = function(){ 
       document.getElementById("leaderboard").onclick = function () {
         location.href = "http://localhost:8080/leaderboards";
-      }; 
+      };
+      document.getElementById('logoutbutton').addEventListener('click', signOut, false);	       
     };
      
 	 </script>
@@ -76,7 +79,7 @@
         </form>
        
        <form mehtod ="get" action="/logout"> 
-       <button class="btn btn-outline-success my-2 my-sm-0" name="logout" value="logout">logout</button>
+       <button class="btn btn-outline-success my-2 my-sm-0" id="logoutbutton" name="logout" value="logout">logout</button>
        </form>
       </div>
     </nav>
