@@ -105,7 +105,7 @@ end
 
 execute "npm_install" do
   cwd "/home/ubuntu/project"
-  command "npm install"
+  command "npm install --no-bin-links"
 end
 
 # Populate the DB
