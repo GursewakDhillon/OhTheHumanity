@@ -41,6 +41,13 @@ app.get('/style.css', function(request, response) {
   response.sendFile(__dirname + '/style.css');
 });
 
+app.get('/login.css', function(request, response) {
+  response.statusCode = 200;
+  response.setHeader('Content-Type', 'text/css');
+  response.setHeader("Cache-Control","max-age=1800");
+  response.sendFile(__dirname + '/login.css');
+});
+
 app.get('/intro.jpg', function(request, response) {
   response.statusCode = 200;
   response.setHeader('Content-Type', 'img/png');
