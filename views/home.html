@@ -47,7 +47,9 @@
       document.getElementById("start-button").onclick = function () {
         document.getElementById("help-button").style.display = "none";
         document.getElementById("start-button").style.display = "none";
-        document.getElementById("recaptchaForm").style.display = "block";
+        //document.getElementById("recaptchaForm").style.display = "block";
+         document.getElementById("classic").style.display = "block";
+           document.getElementById("timed").style.display = "block";
       };
     
       document.getElementById("help-button").onclick = function () {
@@ -60,10 +62,21 @@
     
       document.getElementById("got-button").onclick = function () {
         document.getElementById("got-button").style.display = "none";
-        document.getElementById("recaptchaForm").style.display = "block";
+       // document.getElementById("recaptchaForm").style.display = "block";
         document.getElementById("neon-fonts").style.display = "block";
         document.getElementById("rules").style.display = "none";
+        document.getElementById("classic").style.display = "block";
+        document.getElementById("timed").style.display = "block";
       }; 
+
+      document.getElementById("classic").onclick = function () {
+        location.href = '/classic';
+      }; 
+
+      document.getElementById("timed").onclick = function () {
+        location.href = '/time';
+      }; 
+
       document.getElementById('logoutbutton').addEventListener('click', signOut, false);	       
 
     };
@@ -101,8 +114,7 @@
     </nav>
 
     <div class="container">
-	<a href="/play/classic">Classic Mode</a>
-	<a href="/play/time">Time Mode</a>
+
 	
       <div class = "image">
       <img src="/intro.jpg" alt="intro" class = "intro-background">
@@ -117,6 +129,8 @@
        <button id ="start-button">Start!</button>
        <button id ="help-button">Rules</button>
        <button id ="got-button">Got it, start!</button>
+       <button id ="classic">Classic Mode</button>
+       <button id ="timed">Timed Challenge</button>
       </div>
      </div>
     </div>
