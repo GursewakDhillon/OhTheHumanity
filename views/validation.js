@@ -1,46 +1,63 @@
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyDZQTUi5bZYnb1ZoXDzIUnZ8U0ksvc40Bs",
+    authDomain: "ohthehumanity-8dafd.firebaseapp.com",
+    databaseURL: "https://ohthehumanity-8dafd.firebaseio.com",
+    projectId: "ohthehumanity-8dafd",
+    storageBucket: "ohthehumanity-8dafd.appspot.com",
+    messagingSenderId: "915346635051"
+};
+firebase.initializeApp(config);
+//debugger;
+
 function validate()
 { 
-   if( document.playerRegistration.fullname.value == "" )
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('pass1').value;  
+    var repassword = document.getElementById('pass2').value;         
+    var avatar = document.getElementById('avatar').value;
+    var fullname = document.getElementById('fullname').value;  
+    var username = document.getElementById('username').value; 
+
+   if( fullname == "" )
    {
      alert( "Please provide your Full Name!" );
-     document.playerRegistration.fullname.focus() ;
+     document.getElementById('fullname').focus() ;
      return false;
    }
       
-   if( document.playerRegistration.username.value == "" )
+   if( username == "" )
    {
      alert( "Please provide your username!" );
-     document.playerRegistration.username.focus() ;
+     document.getElementById('username').focus();
      return false;
    }
-   if( document.playerRegistration.password.value == "" )
+   if( password == "" )
    {
      alert( "Please provide your password!" );
-     document.playerRegistration.password.focus() ;
+     document.getElementById('pass1').focus();
      return false;
    }
    
-   if( document.playerRegistration.repassword.value == "" )
+   if( repassword == "" )
    {
      alert( "Please provide your password again!" );
-     document.playerRegistration.repassword.focus() ;
+     document.getElementById('pass2').focus();
      return false;
    }
     
-   
- var email = document.playerRegistration.email.value;
-  atpos = email.indexOf("@");
-  dotpos = email.lastIndexOf(".");
+ atpos = email.indexOf("@");
+ dotpos = email.lastIndexOf(".");
  if (email == "" || atpos < 1 || ( dotpos - atpos < 2 )) 
  {
      alert("Please enter correct email ID")
-     document.playerRegistration.emailid.focus() ;
+     document.getElementById('email').focus() ;
      return false;
  }
-  if( document.playerRegistration.avatar.value == "" )
+  if( avatar == "" )
    {
      alert( "Please provide your avater Id!" );
-     document.playerRegistration.dob.focus() ;
+     document.getElementById('avatar').focus() ;
      return false;
    }
   
@@ -64,3 +81,65 @@ function checkPass()
         message.innerHTML = "Passwords Do Not Match!"
     }
 }  
+
+function post(path, params, method) {
+    method = method || "post"; // Set method to post by default if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+         }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+}
+
+function createUser()
+{
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('pass1').value;      
+    var avatar = document.getElementById('avatar').value;
+    var fullname = document.getElementById('fullname').value;  
+    var username = document.getElementById('username').value; 
+
+    if (validate())
+    {    
+      firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // [START_EXCLUDE]
+        if (errorCode == 'auth/weak-password') {
+          alert('The password is too weak.');
+        } else {
+          alert(errorMessage);
+        }
+        console.log(error);
+        return;
+      }).then(function() {
+        alert('success!');
+        post('/registration', { "email": email, "avatar": avatar, "username": username, "fullname": fullname });
+      });
+    }
+    else
+    {
+      alert('validation errors, please correct before continuing')
+    }
+}
+
+window.onload = function() {
+    document.getElementById('registrationsubmit').addEventListener('click', createUser, false);		
+};
+		
