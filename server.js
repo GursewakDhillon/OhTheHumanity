@@ -7,6 +7,7 @@ var crypto = require('crypto');
 var models = require('./models');
 var app = express();
 var session= require('express-session');
+//var firebase = require('firebase');
 
 
 app.use(bodyParser.json());       // to support JSON-encoded bodies
@@ -34,11 +35,26 @@ app.get('/images/user_photo.png', function(request, response) {
 });
 
 app.get('/style.css', function(request, response) {
-  response.writeHead(200, {'Content-type' : 'text/css'});
-    var fileContents = fs.readFileSync('./stylesheets/style.css', {encoding: 'utf8'});
-    response.write(fileContents);
-    response.end();
+  response.statusCode = 200;
+  response.setHeader('Content-Type', 'text/css');
+  response.setHeader("Cache-Control","max-age=1800");
+  response.sendFile(__dirname + '/style.css');
 });
+
+app.get('/login.css', function(request, response) {
+  response.statusCode = 200;
+  response.setHeader('Content-Type', 'text/css');
+  response.setHeader("Cache-Control","max-age=1800");
+  response.sendFile(__dirname + '/login.css');
+});
+
+app.get('/intro.jpg', function(request, response) {
+  response.statusCode = 200;
+  response.setHeader('Content-Type', 'img/png');
+  response.setHeader("Cache-Control","max-age=1800");
+  response.sendFile(__dirname + '/intro.jpg');
+});
+
 
 
 app.get('/signup', function(request, response) {
@@ -63,10 +79,20 @@ app.get('/login.js', function(request, response) {
   
 });
 
+
 app.get('/recaptcha.js', function(request, response) {
   response.writeHead(200, {'Content-type' : 'application/javascript'});
 
     var fileContents = fs.readFileSync('./views/recaptcha.js', {encoding: 'utf8'});
+    response.write(fileContents);
+  response.end();
+  
+});
+
+app.get('/logout.js', function(request, response) {
+  response.writeHead(200, {'Content-type' : 'application/javascript'});
+     
+    var fileContents = fs.readFileSync('./views/logout.js', {encoding: 'utf8'});
     response.write(fileContents);
   response.end();
   
@@ -178,7 +204,6 @@ app.post('/registration', function (req, res) {
         email:       req.body.email,
         avatar:      req.body.avatar,
         username:    req.body.username,
-        credentials: hash,
         validated:   1
 
 
@@ -194,10 +219,9 @@ app.post('/registration', function (req, res) {
 
 // Logout endpoint
 app.get('/logout', function (req, res) {
-  //console.log(req);
+  console.log(req);
   req.session.destroy();
   res.redirect('/');
- 
 });
 
 app.listen(3000, function () {
@@ -223,3 +247,7 @@ function verifyRecaptcha(key, callback) {
                 });
         });
 }
+
+app.get('/test', checkAuth,function(request, response) {
+  response.sendFile(path.join(__dirname, '/views/test_login.html'));
+});

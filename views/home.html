@@ -6,35 +6,22 @@
     <meta name="description" content="">
     <meta name="author" content="">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css" />
 		<link rel="icon" href="https://v4-alpha.getbootstrap.com/favicon.ico">
 	 <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+   <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
+   <script src="logout.js"></script>  
 	 <script>
-		var widget1;
+
 		
 		 function onSubmit(token) {
 			 document.getElementById("recaptchaForm").submit();
 		 }
 
 		var onloadCallback = function() {
-          widget1 = grecaptcha.render('recaptcha1', {
-            'sitekey' : '6LeuJxkUAAAAACp5mLL7oD8CRIq0ObIVWP9UwM2t',
-            'callback' : addScore
-          });
+          onloadTime();
         };
 		
-		var score = 0;
-		
-		function addScore(){
-			score = score + 5;
-			document.getElementById('score').innerHTML = score;
-		}
-		
-		function reset(){
-			console.log("reset!");
-		  grecaptcha.reset(widget1, {
-            'sitekey' : '6LeuJxkUAAAAACp5mLL7oD8CRIq0ObIVWP9UwM2t'
-          });
-		}
 
      function makePOSTRequest() {
          //document.getElementsByClassName("navbar-toggler-icon").click();
@@ -54,8 +41,31 @@
     
     window.onload = function(){ 
       document.getElementById("leaderboard").onclick = function () {
-        location.href = "http://localhost:8080/leaderboards";
+        location.href = '/leaderboards.html';
       }; 
+    
+      document.getElementById("start-button").onclick = function () {
+        document.getElementById("help-button").style.display = "none";
+        document.getElementById("start-button").style.display = "none";
+        document.getElementById("recaptchaForm").style.display = "block";
+      };
+    
+      document.getElementById("help-button").onclick = function () {
+        document.getElementById("help-button").style.display = "none";
+        document.getElementById("start-button").style.display = "none";
+        document.getElementById("neon-fonts").style.display = "none";
+        document.getElementById("got-button").style.display = "block";
+        document.getElementById("rules").style.display = "inline";
+      }; 
+    
+      document.getElementById("got-button").onclick = function () {
+        document.getElementById("got-button").style.display = "none";
+        document.getElementById("recaptchaForm").style.display = "block";
+        document.getElementById("neon-fonts").style.display = "block";
+        document.getElementById("rules").style.display = "none";
+      }; 
+      document.getElementById('logoutbutton').addEventListener('click', signOut, false);	       
+
     };
      
 	 </script>
@@ -76,30 +86,16 @@
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
+            <a class="nav-link" href="#">Missions</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" id = "leaderboard" href="#">Leaderboards</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" placeholder="Search" type="text">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+       
        
        <form mehtod ="get" action="/logout"> 
-       <button class="btn btn-outline-success my-2 my-sm-0" name="logout" value="logout">logout</button>
+       <button class="btn btn-outline-success my-2 my-sm-0" id="logoutbutton" name="logout" value="logout">logout</button>
        </form>
       </div>
     </nav>
@@ -115,6 +111,21 @@
 				</form>
 				<p id="score">0</p>
 				 <button onclick="reset()">reset</button> 
+      <div class = "image">
+      <img src="/intro.jpg" alt="intro" class = "intro-background">
+      <div id = "neon-fonts">
+        <h2 class = "captcha"><span> CAPTCHA </span> </h2>
+        <h2 class = "game"><span> THE GAME </span> </h2>
+      </div>
+      <div>
+        <h2 id = "rules"><span> Yet to decide, depend on our score system and maybe additional features as well</span></h2>
+      </div>
+      <div class = "buttons">
+       <button id ="start-button">Start!</button>
+       <button id ="help-button">Rules</button>
+       <button id ="got-button">Got it, start!</button>
+      </div>
+     </div>
     </div>
 
 
