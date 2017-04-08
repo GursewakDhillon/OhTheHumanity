@@ -3,33 +3,29 @@
   <head>
     <title>OhTheHumanity</title>
     <meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<script src="https://use.fontawesome.com/47386ccac3.js"></script>
-</head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="https://use.fontawesome.com/47386ccac3.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
+		<script src="login.js"></script>
+  </head>
+
   <body>
 	  <div class="imgcontainer">
 	    <img src="./images/user_photo.png" alt="Avatar" class="avatar">
 	  </div>
-      
-       
+    <div class="container">
 
-	  <div class="container">
-	  	<form method ="post"> 
-	    <label><b>Username</b></label>
-	    <input type="text" placeholder="Enter Username" name="username" required>
-
-	    <label><b>Password</b></label>
-	    <input type="password" placeholder="Enter Password" name="password" required>
-
-	    <button type="submit" value="login">Login</button>
-	    </form>
+			<label><b>Email</b></label>
+			<input id="email" type="text" placeholder="Enter Email (you@example.com)" name="email" required>
+			<label><b>Password</b></label>
+			<input id="password" type="password" placeholder="Enter Password" name="password" required>
+			<button id="submitlogin" type="submit" value="login">Login</button>
 
 	    <form mehtod ="get" action="/signup"> 
        		<button name="signup" value="signup">Sign Up</button>
-       </form>
-
+      </form>
 
 	    <input type="checkbox" checked="checked"> Remember me
 	  </div>
@@ -40,4 +36,5 @@
 	  </div>
 	
   </body>
+
 </html>

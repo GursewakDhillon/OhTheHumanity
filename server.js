@@ -7,7 +7,6 @@ var crypto = require('crypto');
 var models = require('./models');
 var app = express();
 var session= require('express-session');
-const bcrypt = require('bcrypt');
 
 
 app.use(bodyParser.json());       // to support JSON-encoded bodies
@@ -55,25 +54,34 @@ app.get('/validation.js', function(request, response) {
   
 });
 
+app.get('/login.js', function(request, response) {
+  response.writeHead(200, {'Content-type' : 'application/javascript'});
+     
+    var fileContents = fs.readFileSync('./views/login.js', {encoding: 'utf8'});
+    response.write(fileContents);
+  response.end();
+  
+});
+
 app.get('/', function(request, response) {
   response.sendFile(path.join(__dirname, '/views/login.html'));
 });
 
 app.post('/', function(request, response) {
   
-    var user_name = request.body.username;
-    var password = request.body.password;
-    console.log("post received: %s %s", user_name, password);
+    var loginemail = request.body.email;
+    //var password = request.body.password;
+    console.log("post received: %s", loginemail);
     
     models.User.findOne({
                 where: {
-                    username: user_name,                    
+                    email: loginemail,                    
                 }
             }).then(function(login) {
               if(login !== null)
                {
-                    bcrypt.compare(password, login.credentials, function(err, res) {
-                        if (res) {
+                    //bcrypt.compare(password, login.credentials, function(err, res) {
+                    //    if (res) {
                             
                             var token=generateToken();
                                               
@@ -89,12 +97,12 @@ app.post('/', function(request, response) {
                             response.redirect('/home'); 
                             console.log("Successfully logged into the website!");
 
-                        } else {
-                            console.log("The user credential do not match!");
-                            response.redirect('/');
+                     //   } else {
+                     //       console.log("The user credential do not match!");
+                     //       response.redirect('/');
                             
-                        }
-                     });
+                     //   }
+                     //});
                }
                else
                {
@@ -148,7 +156,7 @@ app.post('/recaptcha', checkAuth,function(request, response) {
 // registration endpoint
 app.post('/registration', function (req, res) {
   
-  bcrypt.hash(req.body.password, 10, function(err, hash)  {
+  //bcrypt.hash(req.body.password, 10, function(err, hash)  {
 
       models.User.create({
         fullname:    req.body.fullname,
@@ -165,7 +173,7 @@ app.post('/registration', function (req, res) {
 
       });
 
-  });
+  //});
  
 });
 

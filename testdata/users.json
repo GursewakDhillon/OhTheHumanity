@@ -6,7 +6,7 @@
           "email": "foo@jones.com",
           "avatar": 1,
           "username": "Foo",
-          "credentials": "123",
+          "credentials": "123456",
           "validated": 1
       },
       {
@@ -15,8 +15,17 @@
           "email": "bar@smith.com",
           "avatar" : 1,
           "username": "Bar",
-          "credentials": "456",
+          "credentials": "123456",
           "validated": 1
-      }
+      },
+      {
+          "id": 3,
+          "fullname": "Ben Siggers",
+          "email": "bsiggers@gmail.com",
+          "avatar": 1,
+          "username": "Foo",
+          "credentials": "123",
+          "validated": 1
+      }      
   ]
 }

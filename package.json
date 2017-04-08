@@ -13,11 +13,11 @@
   "author": "Gursewak Dhillon, Andy Dong, Ben Siggers, Michael Zhang",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^1.0.2",
     "body-parser": "^1.17.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.2",
     "express-session": "^1.15.2",
+    "firebase": "^3.7.4",
     "mysql": "^2.13.0",
     "mysql2": "^1.2.0",
     "sequelize": "^3.30.2"

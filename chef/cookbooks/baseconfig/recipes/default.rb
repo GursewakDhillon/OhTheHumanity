@@ -110,7 +110,7 @@ end
 
 execute "npm_install" do
   cwd "/home/ubuntu/project"
-  command "npm install --unsafe-perm"
+  command "npm install --no-bin-links"
 end
 
 # Populate the DB
