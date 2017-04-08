@@ -24,11 +24,9 @@ function signIn() {
                 alert(errorMessage);
             }
         });
-        debugger;
     }
     else
     {
-        debugger;
         firebase.auth().signOut();
     }
 }
@@ -68,7 +66,6 @@ function initApp() {
           var isAnonymous = user.isAnonymous;
           var uid = user.uid;
           var providerData = user.providerData;
-          debugger;
           post('/', { "email": email} );
         }
         else {
