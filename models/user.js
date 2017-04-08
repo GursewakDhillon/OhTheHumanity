@@ -5,7 +5,8 @@ module.exports = function(sequelize, DataTypes) {
     avatar:      DataTypes.INTEGER,
     username:    DataTypes.STRING,
     credentials: DataTypes.STRING,
-    validated:   DataTypes.BOOLEAN
+    validated:   DataTypes.BOOLEAN,
+	Scores:      DataTypes.INTEGER
   });
   return User;
 };

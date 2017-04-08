@@ -7,6 +7,8 @@ var crypto = require('crypto');
 var models = require('./models');
 var app = express();
 var session= require('express-session');
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
 
 app.use(bodyParser.json());       // to support JSON-encoded bodies
@@ -132,7 +134,21 @@ function checkAuth(req, res, next) {
   
    
 };
-
+io.on('connection', function(socket){
+  socket.on('chat message', function(user_name){
+	   models.User.findOne({
+                where: {
+                    username: user_name,                    
+                }
+            }).then(function(user) {
+				io.emit('chat message', user.Scores);
+				
+			});
+    
+	
+  });
+  
+});
 
 app.get('/home', checkAuth,function(request, response) {
   response.sendFile(path.join(__dirname, '/views/home.html'));
@@ -185,9 +201,9 @@ app.get('/logout', function (req, res) {
  
 });
 
-app.listen(3000, function () {
-	console.log('Listening on port 3000!');
-});
+server.listen(3000, function () {
+      console.log('Example app listening on port 3000!');
+    });
 
 var SECRET = "6LeuJxkUAAAAACoFh9JpxUULsuERs1OPvcdrlWRl";
 

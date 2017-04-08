@@ -20,6 +20,7 @@
     "firebase": "^3.7.4",
     "mysql": "^2.13.0",
     "mysql2": "^1.2.0",
-    "sequelize": "^3.30.2"
+    "sequelize": "^3.30.2",
+    "socket.io": "^1.7.3"
   }
 }

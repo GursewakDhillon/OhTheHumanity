@@ -15,7 +15,8 @@ models.sequelize.sync().then(function() {
                             email: user.email, 
                             avatar: user.avatar, 
                             username: user.username, 
-                            validated: user.validated });           
+                            validated: user.validated,
+							Scores: user.scores});           
         });
     });            
            
