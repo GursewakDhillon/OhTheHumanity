@@ -23,6 +23,16 @@ function signIn() {
             } else {
                 alert(errorMessage);
             }
+        }).then(function(user) {
+            if (user){
+                if (user && !user.emailVerified) {
+                    alert("This account is not yet e-mail verified, please check your inbox!");
+                    firebase.auth().signOut();
+                }         
+                else {
+                    post('/', { "email": email } );
+                }
+            }
         });
     }
     else
@@ -87,7 +97,13 @@ function initApp() {
           var isAnonymous = user.isAnonymous;
           var uid = user.uid;
           var providerData = user.providerData;
-          post('/', { "email": email} );
+            if (!user.emailVerified) {
+                //alert("This account is not yet e-mail verified, please check your inbox!");
+                firebase.auth().signOut();
+            }
+            else {
+                post('/', { "email": email} );
+            }
         }
         else {
             // user signed out

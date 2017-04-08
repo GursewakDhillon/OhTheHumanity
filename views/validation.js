@@ -117,10 +117,8 @@ function createUser()
     if (validate())
     {    
       firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-        // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        // [START_EXCLUDE]
         if (errorCode == 'auth/weak-password') {
           alert('The password is too weak.');
         } else {
@@ -131,6 +129,11 @@ function createUser()
       }).then(function() {
         console.log("user successfully registered");
         post('/registration', { "email": email, "avatar": avatar, "username": username, "fullname": fullname });
+      }).then(function() {
+        firebase.auth().currentUser.sendEmailVerification().then(function() {
+          alert('Email Verification Sent, please check your inbox.');
+          firebase.auth().signOut();
+        });
       });
     }
     else
