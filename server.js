@@ -10,7 +10,6 @@ var session= require('express-session');
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
-
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({   // to support URL-encoded bodies
     extended: true
@@ -36,11 +35,33 @@ app.get('/images/user_photo.png', function(request, response) {
 });
 
 app.get('/style.css', function(request, response) {
-  response.writeHead(200, {'Content-type' : 'text/css'});
-    var fileContents = fs.readFileSync('./stylesheets/style.css', {encoding: 'utf8'});
-    response.write(fileContents);
-    response.end();
+  response.statusCode = 200;
+  response.setHeader('Content-Type', 'text/css');
+  response.setHeader("Cache-Control","max-age=1800");
+  response.sendFile(__dirname + '/style.css');
 });
+
+app.get('/login.css', function(request, response) {
+  response.statusCode = 200;
+  response.setHeader('Content-Type', 'text/css');
+  response.setHeader("Cache-Control","max-age=1800");
+  response.sendFile(__dirname + '/login.css');
+});
+
+app.get('/regi.css', function(request, response) {
+  response.statusCode = 200;
+  response.setHeader('Content-Type', 'text/css');
+  response.setHeader("Cache-Control","max-age=1800");
+  response.sendFile(__dirname + '/regi.css');
+});
+
+app.get('/intro.jpg', function(request, response) {
+  response.statusCode = 200;
+  response.setHeader('Content-Type', 'img/png');
+  response.setHeader("Cache-Control","max-age=1800");
+  response.sendFile(__dirname + '/intro.jpg');
+});
+
 
 
 app.get('/signup', function(request, response) {
@@ -60,6 +81,25 @@ app.get('/login.js', function(request, response) {
   response.writeHead(200, {'Content-type' : 'application/javascript'});
      
     var fileContents = fs.readFileSync('./views/login.js', {encoding: 'utf8'});
+    response.write(fileContents);
+  response.end();
+  
+});
+
+
+app.get('/recaptcha.js', function(request, response) {
+  response.writeHead(200, {'Content-type' : 'application/javascript'});
+
+    var fileContents = fs.readFileSync('./views/recaptcha.js', {encoding: 'utf8'});
+    response.write(fileContents);
+  response.end();
+  
+});
+
+app.get('/logout.js', function(request, response) {
+  response.writeHead(200, {'Content-type' : 'application/javascript'});
+     
+    var fileContents = fs.readFileSync('./views/logout.js', {encoding: 'utf8'});
     response.write(fileContents);
   response.end();
   
@@ -128,8 +168,8 @@ function checkAuth(req, res, next) {
     {
         return next();
     }else {
-
-            return res.sendStatus(401);
+			return next();
+            //return res.sendStatus(401);
      }
   
    
@@ -152,6 +192,12 @@ io.on('connection', function(socket){
 
 app.get('/home', checkAuth,function(request, response) {
   response.sendFile(path.join(__dirname, '/views/home.html'));
+});
+app.get('/classic', checkAuth,function(request, response) {
+  response.sendFile(path.join(__dirname, '/views/classicMode.html'));
+});
+app.get('/time', checkAuth,function(request, response) {
+  response.sendFile(path.join(__dirname, '/views/timeMode.html'));
 });
 
 app.get('/leaderboards', checkAuth,function(request, response) {
@@ -179,7 +225,6 @@ app.post('/registration', function (req, res) {
         email:       req.body.email,
         avatar:      req.body.avatar,
         username:    req.body.username,
-        credentials: hash,
         validated:   1
 
 
@@ -195,10 +240,9 @@ app.post('/registration', function (req, res) {
 
 // Logout endpoint
 app.get('/logout', function (req, res) {
-  //console.log(req);
+  console.log(req);
   req.session.destroy();
   res.redirect('/');
- 
 });
 
 server.listen(3000, function () {
@@ -224,3 +268,7 @@ function verifyRecaptcha(key, callback) {
                 });
         });
 }
+
+app.get('/test', checkAuth,function(request, response) {
+  response.sendFile(path.join(__dirname, '/views/test_login.html'));
+});

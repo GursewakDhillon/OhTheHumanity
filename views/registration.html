@@ -3,26 +3,27 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="regi.css">
+	<script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>	
 	<script type="text/javascript" src="validation.js"></script>
 </head>
 <body>
 
-<form action="/registration" name="playerRegistration" method ="post" onsubmit="return(validate());">
-
+<div name="playerRegistration">
+<div class = "image">
+   <img src="/intro.jpg" alt="intro" class = "intro-background">
 <table cellpadding="2" width="90%" class ="registation_Table" align="center"
 cellspacing="2">
 
+
+
 <tr>
 <td colspan=4>
-<center><font size=6><b>Registration Form</b></font></center>
+<center><h2>Welcome</h2></center>
+<center><h2>Our New Challenger</h2></center>
 </td>
 </tr>
 
-<tr>
-<td>Full Name</td>
-<td><input type=text name="fullname" id="fullname" placeholder="Full name"size="30"></td>
-</tr>
 
 <tr>
 <td>Username</td>
@@ -40,7 +41,7 @@ cellspacing="2">
 
 <tr>
 <td>Avatar</td>
-<td><input type="text" name="avatar" id="avatar" placeholder="avatar" size="30"></td>
+<td><input type="text" name="avatar" id="avatar" placeholder="1" size="30"></td>
 </tr>
 
 <tr>
@@ -51,8 +52,12 @@ cellspacing="2">
 <tr>
 <div align="center">
 <font size="5"><b><input type="reset"></b>
-<b><input type="submit" value="Submit"/></b></font></tr>
-</form>
+<button id="registrationsubmit" type="submit" value="Submit">SignUp</button>
+</font>
+</tr>
+</div>
+
+</div>
 </div>
 </body>
 </html>

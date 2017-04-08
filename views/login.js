@@ -23,15 +23,44 @@ function signIn() {
             } else {
                 alert(errorMessage);
             }
+        }).then(function(user) {
+            if (user){
+                if (user && !user.emailVerified) {
+                    alert("This account is not yet e-mail verified, please check your inbox!");
+                    firebase.auth().signOut();
+                }         
+                else {
+                    post('/', { "email": email } );
+                }
+            }
         });
-        debugger;
     }
     else
     {
-        debugger;
         firebase.auth().signOut();
     }
 }
+
+function forgotPassword() {
+    var email = document.getElementById('email').value;
+    if (email == "") {
+        alert("Please enter in the email address you signed up with.");
+        return;
+    }
+    firebase.auth().sendPasswordResetEmail(email).then(function() {
+        alert('Password reset email sent - please check your inbox!');
+    }).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if (errorCode == 'auth/invalid-email') {
+            alert(errorMessage);
+        } else if (errorCode == 'auth/user-not-found') {
+            alert(errorMessage);
+        }
+    console.log(error);
+    });
+}
+
 
 function post(path, params, method) {
     method = method || "post"; // Set method to post by default if not specified.
@@ -68,14 +97,20 @@ function initApp() {
           var isAnonymous = user.isAnonymous;
           var uid = user.uid;
           var providerData = user.providerData;
-          debugger;
-          post('/', { "email": email} );
+            if (!user.emailVerified) {
+                //alert("This account is not yet e-mail verified, please check your inbox!");
+                firebase.auth().signOut();
+            }
+            else {
+                post('/', { "email": email} );
+            }
         }
         else {
             // user signed out
         }
     });
     document.getElementById('submitlogin').addEventListener('click', signIn, false);				
+    document.getElementById('forgotpassword').addEventListener('click', forgotPassword, false);
 }
 
 
