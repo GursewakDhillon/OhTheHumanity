@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="style.css" />
 		<link rel="icon" href="https://v4-alpha.getbootstrap.com/favicon.ico">
 	 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+   <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
+   <script src="logout.js"></script>  
 	 <script>
 		 function onSubmit(token) {
 			 document.getElementById("recaptchaForm").submit();
@@ -55,6 +57,7 @@
         document.getElementById("neon-fonts").style.display = "block";
         document.getElementById("rules").style.display = "none";
       }; 
+      document.getElementById('logoutbutton').addEventListener('click', signOut, false);	       
     };
      
 	 </script>
@@ -98,7 +101,7 @@
         </form>
        
        <form mehtod ="get" action="/logout"> 
-       <button class="btn btn-outline-success my-2 my-sm-0" name="logout" value="logout">logout</button>
+       <button class="btn btn-outline-success my-2 my-sm-0" id="logoutbutton" name="logout" value="logout">logout</button>
        </form>
       </div>
     </nav>
