@@ -7,6 +7,7 @@ var crypto = require('crypto');
 var models = require('./models');
 var app = express();
 var session= require('express-session');
+//var firebase = require('firebase');
 
 
 app.use(bodyParser.json());       // to support JSON-encoded bodies
@@ -58,6 +59,15 @@ app.get('/login.js', function(request, response) {
   response.writeHead(200, {'Content-type' : 'application/javascript'});
      
     var fileContents = fs.readFileSync('./views/login.js', {encoding: 'utf8'});
+    response.write(fileContents);
+  response.end();
+  
+});
+
+app.get('/logout.js', function(request, response) {
+  response.writeHead(200, {'Content-type' : 'application/javascript'});
+     
+    var fileContents = fs.readFileSync('./views/logout.js', {encoding: 'utf8'});
     response.write(fileContents);
   response.end();
   
@@ -179,10 +189,9 @@ app.post('/registration', function (req, res) {
 
 // Logout endpoint
 app.get('/logout', function (req, res) {
-  //console.log(req);
+  console.log(req);
   req.session.destroy();
   res.redirect('/');
- 
 });
 
 app.listen(3000, function () {
