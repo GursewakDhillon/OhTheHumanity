@@ -7,7 +7,6 @@ var crypto = require('crypto');
 var models = require('./models');
 var app = express();
 var session= require('express-session');
-const bcrypt = require('bcrypt');
 
 
 app.use(bodyParser.json());       // to support JSON-encoded bodies
@@ -157,7 +156,7 @@ app.post('/recaptcha', checkAuth,function(request, response) {
 // registration endpoint
 app.post('/registration', function (req, res) {
   
-  bcrypt.hash(req.body.password, 10, function(err, hash)  {
+  //bcrypt.hash(req.body.password, 10, function(err, hash)  {
 
       models.User.create({
         fullname:    req.body.fullname,
@@ -174,7 +173,7 @@ app.post('/registration', function (req, res) {
 
       });
 
-  });
+  //});
  
 });
 
