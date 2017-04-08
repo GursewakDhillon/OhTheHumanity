@@ -34,11 +34,19 @@ app.get('/images/user_photo.png', function(request, response) {
 });
 
 app.get('/style.css', function(request, response) {
-  response.writeHead(200, {'Content-type' : 'text/css'});
-    var fileContents = fs.readFileSync('./stylesheets/style.css', {encoding: 'utf8'});
-    response.write(fileContents);
-    response.end();
+  response.statusCode = 200;
+  response.setHeader('Content-Type', 'text/css');
+  response.setHeader("Cache-Control","max-age=1800");
+  response.sendFile(__dirname + '/style.css');
 });
+
+app.get('/intro.jpg', function(request, response) {
+  response.statusCode = 200;
+  response.setHeader('Content-Type', 'img/png');
+  response.setHeader("Cache-Control","max-age=1800");
+  response.sendFile(__dirname + '/intro.jpg');
+});
+
 
 
 app.get('/signup', function(request, response) {

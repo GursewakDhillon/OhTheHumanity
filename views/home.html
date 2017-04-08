@@ -6,6 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css" />
 		<link rel="icon" href="https://v4-alpha.getbootstrap.com/favicon.ico">
 	 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 	 <script>
@@ -31,7 +32,28 @@
     
     window.onload = function(){ 
       document.getElementById("leaderboard").onclick = function () {
-        location.href = "http://localhost:8080/leaderboards";
+        location.href = '/leaderboards.html';
+      }; 
+    
+      document.getElementById("start-button").onclick = function () {
+        document.getElementById("help-button").style.display = "none";
+        document.getElementById("start-button").style.display = "none";
+        document.getElementById("recaptchaForm").style.display = "block";
+      };
+    
+      document.getElementById("help-button").onclick = function () {
+        document.getElementById("help-button").style.display = "none";
+        document.getElementById("start-button").style.display = "none";
+        document.getElementById("neon-fonts").style.display = "none";
+        document.getElementById("got-button").style.display = "block";
+        document.getElementById("rules").style.display = "inline";
+      }; 
+    
+      document.getElementById("got-button").onclick = function () {
+        document.getElementById("got-button").style.display = "none";
+        document.getElementById("recaptchaForm").style.display = "block";
+        document.getElementById("neon-fonts").style.display = "block";
+        document.getElementById("rules").style.display = "none";
       }; 
     };
      
@@ -87,6 +109,21 @@
 					<div class="g-recaptcha" data-sitekey="6LeuJxkUAAAAACp5mLL7oD8CRIq0ObIVWP9UwM2t"></div>
 					<input type="submit" value="Submit">
 				</form>
+      <div class = "image">
+      <img src="/intro.jpg" alt="intro" class = "intro-background">
+      <div id = "neon-fonts">
+        <h2 class = "captcha"><span> CAPTCHA </span> </h2>
+        <h2 class = "game"><span> THE GAME </span> </h2>
+      </div>
+      <div>
+        <h2 id = "rules"><span> Yet to decide, depend on our score system and maybe additional features as well</span></h2>
+      </div>
+      <div class = "buttons">
+       <button id ="start-button">Start!</button>
+       <button id ="help-button">Rules</button>
+       <button id ="got-button">Got it, start!</button>
+      </div>
+     </div>
     </div>
 
 
