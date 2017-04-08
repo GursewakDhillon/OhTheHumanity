@@ -7,35 +7,15 @@
     <meta name="author" content="">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 		<link rel="icon" href="https://v4-alpha.getbootstrap.com/favicon.ico">
+	
 	 <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+	 <script type='text/javascript' src="recaptcha.js"></script>
 	 <script>
-		var widget1;
-		
-		 function onSubmit(token) {
-			 document.getElementById("recaptchaForm").submit();
-		 }
-
+	 
 		var onloadCallback = function() {
-          widget1 = grecaptcha.render('recaptcha1', {
-            'sitekey' : '6LeuJxkUAAAAACp5mLL7oD8CRIq0ObIVWP9UwM2t',
-            'callback' : addScore
-          });
-        };
+		  onloadClassic();
+		};
 		
-		var score = 0;
-		
-		function addScore(){
-			score = score + 5;
-			document.getElementById('score').innerHTML = score;
-		}
-		
-		function reset(){
-			console.log("reset!");
-		  grecaptcha.reset(widget1, {
-            'sitekey' : '6LeuJxkUAAAAACp5mLL7oD8CRIq0ObIVWP9UwM2t'
-          });
-		}
-
      function makePOSTRequest() {
          //document.getElementsByClassName("navbar-toggler-icon").click();
         var url ="/logout";
@@ -105,9 +85,6 @@
     </nav>
 
     <div class="container">
-	<a href="/play/classic">Classic Mode</a>
-	<a href="/play/time">Time Mode</a>
-	
       <h1>Home</h1>
 				<form id="recaptchaForm" action="recaptcha" method="POST" data-callback="verifyRecaptcha">
 					<div id="recaptcha1"></div>

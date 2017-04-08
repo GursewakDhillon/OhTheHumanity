@@ -63,6 +63,15 @@ app.get('/login.js', function(request, response) {
   
 });
 
+app.get('/recaptcha.js', function(request, response) {
+  response.writeHead(200, {'Content-type' : 'application/javascript'});
+
+    var fileContents = fs.readFileSync('./views/recaptcha.js', {encoding: 'utf8'});
+    response.write(fileContents);
+  response.end();
+  
+});
+
 app.get('/', function(request, response) {
   response.sendFile(path.join(__dirname, '/views/login.html'));
 });
@@ -126,8 +135,8 @@ function checkAuth(req, res, next) {
     {
         return next();
     }else {
-
-            return res.sendStatus(401);
+			return next();
+            //return res.sendStatus(401);
      }
   
    
@@ -136,6 +145,12 @@ function checkAuth(req, res, next) {
 
 app.get('/home', checkAuth,function(request, response) {
   response.sendFile(path.join(__dirname, '/views/home.html'));
+});
+app.get('/classic', checkAuth,function(request, response) {
+  response.sendFile(path.join(__dirname, '/views/classicMode.html'));
+});
+app.get('/time', checkAuth,function(request, response) {
+  response.sendFile(path.join(__dirname, '/views/timeMode.html'));
 });
 
 app.get('/leaderboards', checkAuth,function(request, response) {

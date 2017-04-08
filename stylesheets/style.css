@@ -1,3 +1,8 @@
+/* Padding for bootstrap navbar */
+body {
+    padding-top: 70px;
+}
+
 /* Bordered form */
 form {
     
