@@ -328,7 +328,3 @@ function verifyRecaptcha(key, callback) {
                 });
         });
 }
-
-app.get('/test', checkAuth,function(request, response) {
-  response.sendFile(path.join(__dirname, '/views/test_login.html'));
-});
