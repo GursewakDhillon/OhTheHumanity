@@ -6,6 +6,67 @@
   z-index: -1;
 }
 
+
+
+
+/*Neon Font style designed by Thomas Trinca. reference website https://codemyui.com/glowing-flicker-neon-text-effect */
+@font-face {
+  font-family: neon;
+  src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/707108/neon.ttf);
+}
+
+.welcome {
+  position: absolute; 
+  top: 35px;
+  left:12%;
+  font-family: neon;
+  color: #FB4264;
+  font-size: 15vw;
+  line-height: 9vw;
+  text-shadow: 0vw 0vw 3vw #F40A35;
+}
+
+
+
+.new_player {
+  position: absolute; 
+  top: 80px;
+  left:12%;
+  font-family: neon;
+  color: #ffffff;
+  font-size: 10vw;
+  line-height: 9vw;
+  text-shadow: 0vw 0vw 3vw #2356FF;
+}
+
+
+
+
+/*above neon font by Thomas Trinca.*/
+
+
+
 .registation_Table{
 	position: absolute; 
+	top: 100px;
+    padding:16px;
+    color:black;
+}
+.font-setting{
+	font-size: 16px;
+	color:black;
+}
+/* Full-width inputs */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+#registrationsubmit{
+	font-size: 22px;
+
 }

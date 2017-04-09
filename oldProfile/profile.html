@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="profile.css" />
+		<link rel="icon" href="https://v4-alpha.getbootstrap.com/favicon.ico">
+   <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
+   <script src="logout.js"></script>  
+	 <script>
+
+
+		
+
+     function makePOSTRequest() {
+         //document.getElementsByClassName("navbar-toggler-icon").click();
+        var url ="/logout";
+        httpRequest = new XMLHttpRequest();
+        httpRequest.open("GET", url, true);
+        
+        httpRequest.setRequestHeader("Content-type", "application/json");
+
+        httpRequest.onreadystatechange = function() {
+            if(httpRequest.readyState == 4 && httpRequest.status == 200) {
+                console.log('The user is successfully logged out!');
+            }
+        }
+        httpRequest.send();
+    }
+    
+     
+	 </script>
+    <title>Home</title>
+  </head>
+
+  <body>
+
+<div class="container">
+    <div class="row profile">
+    <div class="col-md-3">
+      <div class="profile-sidebar">
+
+        <div class="profile-usertitle">
+          <div class="profile-usertitle-name">
+			Username
+          </div>
+          <div>
+            Score <br>
+            <progress class="progress progress-striped progress-success" value="50" max="100" data-toggle="tooltip" data-placement="bottom" title="50 points until next level!"></progress>
+          </div>
+          <div>
+            Joined: date<br>
+            Achievements: blah<br>
+          </div>
+        </div>
+        <!-- Buttons for future use
+        <div class="profile-userbuttons">
+          <button type="button" class="btn btn-success btn-sm">button</button>
+          <button type="button" class="btn btn-danger btn-sm">button</button>
+        </div>
+         -->
+
+        <div class="profile-usermenu">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/users/edit">
+              <span aria-hidden="true"></span> Edit Profile </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-method="delete" rel="nofollow">
+                <span aria-hidden="true"></span> Log Out </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- END MENU -->
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="profile-content">
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</body></html>
