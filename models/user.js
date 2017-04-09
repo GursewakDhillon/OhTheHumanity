@@ -6,6 +6,12 @@ module.exports = function(sequelize, DataTypes) {
     username:    DataTypes.STRING,
     credentials: DataTypes.STRING,
     validated:   DataTypes.BOOLEAN
+  }, {
+    classMethods: {
+      associate: function(models) {
+        User.belongsToMany(models.Achievement, {through: 'UserAchievement'});
+      }
+    }
   });
   return User;
 };

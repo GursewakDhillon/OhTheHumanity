@@ -89,41 +89,15 @@
 					<input type="submit" value="Submit">
 				</form>
 
-				 <button onclick="reset()">reset</button> 
-    </div>
-    <div class="container">
-      <h1>CAPTCHA 2</h1>
-				<form id="recaptchaForm" action="recaptcha" method="POST" data-callback="verifyRecaptcha">
-					<div id="recaptcha2"></div>
-					<input type="submit" value="Submit">
-				</form>
-
-				 <button onclick="reset()">reset</button> 
-    </div>
-    <div class="container">
-      <h1>CAPTCHA 3</h1>
-				<form id="recaptchaForm" action="recaptcha" method="POST" data-callback="verifyRecaptcha">
-					<div id="recaptcha3"></div>
-					<input type="submit" value="Submit">
-				</form>
-
-				 <button onclick="reset()">reset</button> 
-    </div>
-    <div class="container">
-      <h1>CAPTCHA 4</h1>
-				<form id="recaptchaForm" action="recaptcha" method="POST" data-callback="verifyRecaptcha">
-					<div id="recaptcha4"></div>
-					<input type="submit" value="Submit">
-				</form>
-
-				 <button onclick="reset()">reset</button> 
+				 <button id="reset" class="btn btn-primary" onclick="reset()">Another!</button> 
     </div>
 	
 <span id="timer"></span>
 
-<button id="start">start</button>
+<button id="start" class="btn btn-primary" onclick="startTimeMode()">start</button>
+<p>Score: <span id="score">0</span></p>
 <button id="stop">stop</button>
-<button id="reset">reset</button>
+<button id="restart" onclick="restartTimeMode()">restart</button>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

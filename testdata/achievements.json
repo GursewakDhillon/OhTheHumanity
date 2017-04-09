@@ -1,0 +1,12 @@
+{
+  "achievements": [
+      {
+          "name": "Captcha novice",
+          "description": "Accumulated 100 points in total."
+      },
+      {
+          "name": "Time Mode novice",
+          "description": "Achieved a score of 20 or more in Time Mode."
+      }
+  ]
+}
