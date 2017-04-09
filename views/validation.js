@@ -134,6 +134,60 @@ function createUser()
 }
 
 window.onload = function() {
-    document.getElementById('registrationsubmit').addEventListener('click', createUser, false);		
+    document.getElementById('registrationsubmit').addEventListener('click', createUser, false);	
+    document.getElementById("avatar1").onclick = function () {
+         document.getElementById('avatar').value = 1;
+          document.getElementById("avatar1").style.backgroundColor = "yellow";
+          document.getElementById("avatar2").style.backgroundColor = "transparent";
+          document.getElementById("avatar3").style.backgroundColor = "transparent";
+          document.getElementById("avatar4").style.backgroundColor = "transparent";
+          document.getElementById("avatar5").style.backgroundColor = "transparent";
+          document.getElementById("avatar6").style.backgroundColor = "transparent";
+    }
+        document.getElementById("avatar2").onclick = function () {
+         document.getElementById('avatar').value = 2;
+         document.getElementById("avatar1").style.backgroundColor = "transparent";
+         document.getElementById("avatar2").style.backgroundColor = "yellow";
+          document.getElementById("avatar3").style.backgroundColor = "transparent";
+          document.getElementById("avatar4").style.backgroundColor = "transparent";
+          document.getElementById("avatar5").style.backgroundColor = "transparent";
+          document.getElementById("avatar6").style.backgroundColor = "transparent";
+    }
+        document.getElementById("avatar3").onclick = function () {
+         document.getElementById('avatar').value = 3;
+          document.getElementById("avatar1").style.backgroundColor = "transparent";
+         document.getElementById("avatar2").style.backgroundColor = "transparent";
+          document.getElementById("avatar3").style.backgroundColor = "yellow";
+          document.getElementById("avatar4").style.backgroundColor = "transparent";
+          document.getElementById("avatar5").style.backgroundColor = "transparent";
+          document.getElementById("avatar6").style.backgroundColor = "transparent";
+    }
+        document.getElementById("avatar4").onclick = function () {
+         document.getElementById('avatar').value = 4;
+          document.getElementById("avatar1").style.backgroundColor = "transparent";
+         document.getElementById("avatar2").style.backgroundColor = "transparent";
+          document.getElementById("avatar3").style.backgroundColor = "transparent";
+          document.getElementById("avatar4").style.backgroundColor = "yellow";
+          document.getElementById("avatar5").style.backgroundColor = "transparent";
+          document.getElementById("avatar6").style.backgroundColor = "transparent";
+    }
+        document.getElementById("avatar5").onclick = function () {
+         document.getElementById('avatar').value = 5;
+          document.getElementById("avatar1").style.backgroundColor = "transparent";
+         document.getElementById("avatar2").style.backgroundColor = "transparent";
+          document.getElementById("avatar3").style.backgroundColor = "transparent";
+          document.getElementById("avatar4").style.backgroundColor = "transparent";
+          document.getElementById("avatar5").style.backgroundColor = "yellow";
+          document.getElementById("avatar6").style.backgroundColor = "transparent";
+    }
+        document.getElementById("avatar6").onclick = function () {
+         document.getElementById('avatar').value = 6;
+          document.getElementById("avatar1").style.backgroundColor = "transparent";
+         document.getElementById("avatar2").style.backgroundColor = "transparent";
+          document.getElementById("avatar3").style.backgroundColor = "transparent";
+          document.getElementById("avatar4").style.backgroundColor = "transparent";
+          document.getElementById("avatar5").style.backgroundColor = "transparent";
+          document.getElementById("avatar6").style.backgroundColor = "yellow";
+    }
 };
 		

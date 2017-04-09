@@ -35,6 +35,36 @@ app.get('/images/user_photo.png', function(request, response) {
     response.end(img, 'binary');
 });
 
+app.get('/man.png', function(request, response) {
+  response.writeHead(200, {'Content-type' : 'image/png'});
+    var img = fs.readFileSync('./images/man.png');
+    response.end(img, 'binary');
+});
+app.get('/guy.png', function(request, response) {
+  response.writeHead(200, {'Content-type' : 'image/png'});
+    var img = fs.readFileSync('./images/guy.png');
+    response.end(img, 'binary');
+});
+app.get('/teacher.png', function(request, response) {
+  response.writeHead(200, {'Content-type' : 'image/png'});
+    var img = fs.readFileSync('./images/teacher.png');
+    response.end(img, 'binary');
+});
+app.get('/woman.png', function(request, response) {
+  response.writeHead(200, {'Content-type' : 'image/png'});
+    var img = fs.readFileSync('./images/woman.png');
+    response.end(img, 'binary');
+});
+app.get('/woman2.png', function(request, response) {
+  response.writeHead(200, {'Content-type' : 'image/png'});
+    var img = fs.readFileSync('./images/woman2.png');
+    response.end(img, 'binary');
+});
+app.get('/woman3.png', function(request, response) {
+  response.writeHead(200, {'Content-type' : 'image/png'});
+    var img = fs.readFileSync('./images/woman3.png');
+    response.end(img, 'binary');
+});
 app.get('/style.css', function(request, response) {
   response.statusCode = 200;
   response.setHeader('Content-Type', 'text/css');
