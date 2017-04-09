@@ -176,19 +176,35 @@ function checkAuth(req, res, next) {
 };
 io.on('connection', function(socket){
   socket.on('chat message', function(){
+	  var reformat ={};
+	  var userformat=[];
 	   models.User.findAll({attributes: ['fullname','Scores']
             }).then(function(user) {
-				var u_scores = JSON.stringify(user);
-				var reformat = user.map(function(obj){
+				
+				//var u_scores = JSON.stringify(user);
+				reformat.userformat = user.map(function(obj){
 					var rObj = {};
 					rObj["fullname"]=obj.fullname;
 					rObj["Scores"]=obj.Scores;
+					console.log(rObj);
 					return rObj;
 				});
 				
-			}).then(function(reformat){
-				io.emit('chat message', JSON.stringify(reformat));
-				});
+				for (var i = 0; i < reformat.userformat.length; i++)
+				{
+					var empty=" has a score of: ";
+					var nameQuotation=JSON.stringify(reformat.userformat[i].fullname);
+					var name=nameQuotation.replace(/['"]+/g, '')
+					var scores=JSON.stringify(reformat.userformat[i].Scores);
+					var message=name+empty+scores;
+					io.emit('chat message', message);
+					;
+							
+				}
+				
+				
+			});
+				
     
 	
   });
