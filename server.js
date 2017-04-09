@@ -7,6 +7,7 @@ var crypto = require('crypto');
 var models = require('./models');
 var app = express();
 var session= require('express-session');
+var pug = require('pug');
 //var firebase = require('firebase');
 
 
@@ -188,6 +189,12 @@ app.get('/time', checkAuth,function(request, response) {
 
 app.get('/leaderboards', checkAuth,function(request, response) {
   response.sendFile(path.join(__dirname, '/views/leaderboards.html'));
+});
+
+app.get('/profile', checkAuth,function(request, response) {
+  response.render(path.join(__dirname, '/views/profile.pug'),  { title: 'Hey', message: 'Hello there!' });
+  
+  
 });
 
 app.post('/recaptcha', checkAuth,function(request, response) {
