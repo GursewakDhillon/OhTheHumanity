@@ -43,7 +43,11 @@
       document.getElementById("leaderboard").onclick = function () {
         location.href = '/leaderboards.html';
       }; 
-    
+
+       document.getElementById("profile").onclick = function () {
+        location.href = '/profile';
+      };    
+
       document.getElementById("start-button").onclick = function () {
         document.getElementById("help-button").style.display = "none";
         document.getElementById("start-button").style.display = "none";
@@ -104,6 +108,9 @@
           <li class="nav-item">
             <a class="nav-link" id = "leaderboard" href="#">Leaderboards</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" id = "profile" href="#">Profiles</a>
+          </li>          
         </ul>
        
        

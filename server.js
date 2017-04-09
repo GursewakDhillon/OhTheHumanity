@@ -7,6 +7,7 @@ var crypto = require('crypto');
 var models = require('./models');
 var app = express();
 var session= require('express-session');
+var pug = require('pug');
 //var firebase = require('firebase');
 
 
@@ -168,8 +169,7 @@ function checkAuth(req, res, next) {
     {
         return next();
     }else {
-			return next();
-            //return res.sendStatus(401);
+			return res.sendStatus(401);
      }
   
    
@@ -188,6 +188,26 @@ app.get('/time', checkAuth,function(request, response) {
 
 app.get('/leaderboards', checkAuth,function(request, response) {
   response.sendFile(path.join(__dirname, '/views/leaderboards.html'));
+});
+
+app.get('/profile', checkAuth,function(req, response) {
+  console.log(req.session.user);
+
+  models.User.findOne({
+                where: {
+                    id: req.session.user                    
+                }
+  }).then(function(login) {
+    if(login !== null)
+      {
+        response.render(path.join(__dirname, '/views/profile.pug'), 
+          { fullname: login.fullname, 
+            username: login.username,
+            avatar: login.avatar,
+            email: login.email
+            });
+      }
+  });
 });
 
 app.post('/recaptcha', checkAuth,function(request, response) {

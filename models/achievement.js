@@ -5,7 +5,7 @@ module.exports = function(sequelize, DataTypes) {
   }, {
       classMethods: {
       associate: function(models) {
-        Achievement.hasOne(models.User);
+        Achievement.belongsToMany(models.User, {through: 'UserAchievement'});
       }
     }
   });
