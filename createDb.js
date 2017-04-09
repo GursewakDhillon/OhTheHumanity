@@ -32,7 +32,7 @@ models.sequelize.sync().then(function() {
         }
     });
 	
-	fs.readFile(__dirname + '/testdata/leaderboards.json', function(err, data) {
+	fs.readFile(__dirname + '/testdata/achievements.json', function(err, data) {
         var achievement_data = JSON.parse(data);
         var achievements = achievement_data.achievements;
         for (var i = 0; i < achievements.length; i++) {
