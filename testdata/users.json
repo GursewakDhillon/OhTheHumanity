@@ -2,30 +2,39 @@
   "users": [
       {
           "id": 1,
-          "fullname": "Foo Jones",
           "email": "foo@jones.com",
           "avatar": 1,
           "username": "Foo",
           "credentials": "123456",
-          "validated": 1
+          "validated": 1,
+		  "scores": 1000
       },
       {
           "id": 2,
-          "fullname": "Bar Smith",
           "email": "bar@smith.com",
           "avatar" : 1,
           "username": "Bar",
           "credentials": "123456",
-          "validated": 1
+          "validated": 1,
+		  "scores": 50
       },
       {
           "id": 3,
-          "fullname": "Ben Siggers",
           "email": "bsiggers@gmail.com",
           "avatar": 1,
-          "username": "Foo",
+          "username": "Ben",
           "credentials": "123",
-          "validated": 1
-      }      
+          "validated": 1,
+		  "scores": 3000
+      },
+	  {
+          "id": 4,
+          "email": "gsd340@gmail.com",
+          "avatar": 1,
+          "username": "Gursewak",
+          "credentials": "123",
+          "validated": 1,
+		  "scores": 3000
+      }
   ]
 }

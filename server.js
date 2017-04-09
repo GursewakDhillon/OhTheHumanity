@@ -7,8 +7,10 @@ var crypto = require('crypto');
 var models = require('./models');
 var app = express();
 var session= require('express-session');
+
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 var pug = require('pug');
-//var firebase = require('firebase');
 
 
 app.use(bodyParser.json());       // to support JSON-encoded bodies
@@ -204,7 +206,42 @@ function checkAuth(req, res, next) {
   
    
 };
-
+io.on('connection', function(socket){
+  socket.on('chat message', function(){
+	  var reformat ={};
+	  var userformat=[];
+	   models.User.findAll({attributes: ['username','Scores']
+            }).then(function(user) {
+				
+				//var u_scores = JSON.stringify(user);
+				reformat.userformat = user.map(function(obj){
+					var rObj = {};
+					rObj["username"]=obj.username;
+					rObj["Scores"]=obj.Scores;
+					console.log(rObj);
+					return rObj;
+				});
+				
+				for (var i = 0; i < reformat.userformat.length; i++)
+				{
+					var empty=" has a score of: ";
+					var nameQuotation=JSON.stringify(reformat.userformat[i].username);
+					var name=nameQuotation.replace(/['"]+/g, '')
+					var scores=JSON.stringify(reformat.userformat[i].Scores);
+					var message=name+empty+scores;
+					io.emit('chat message', message);
+					;
+							
+				}
+				
+				
+			});
+				
+    
+	
+  });
+  
+});
 
 app.get('/home', checkAuth,function(request, response) {
   response.sendFile(path.join(__dirname, '/views/home.html'));
@@ -305,9 +342,9 @@ app.get('/logout', function (req, res) {
   res.redirect('/');
 });
 
-app.listen(3000, function () {
-	console.log('Listening on port 3000!');
-});
+server.listen(3000, function () {
+      console.log('Example app listening on port 3000!');
+    });
 
 var SECRET = "6LeuJxkUAAAAACoFh9JpxUULsuERs1OPvcdrlWRl";
 
