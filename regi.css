@@ -17,7 +17,7 @@
 
 .welcome {
   position: absolute; 
-  top: 40px;
+  top: 35px;
   left:12%;
   font-family: neon;
   color: #FB4264;
@@ -64,4 +64,9 @@ input[type=text], input[type=password] {
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
+}
+
+#registrationsubmit{
+	font-size: 22px;
+
 }
