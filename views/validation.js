@@ -16,15 +16,7 @@ function validate()
     var password = document.getElementById('pass1').value;  
     var repassword = document.getElementById('pass2').value;         
     var avatar = document.getElementById('avatar').value;
-    var fullname = document.getElementById('fullname').value;  
     var username = document.getElementById('username').value; 
-
-   if( fullname == "" )
-   {
-     alert( "Please provide your Full Name!" );
-     document.getElementById('fullname').focus() ;
-     return false;
-   }
       
    if( username == "" )
    {
@@ -110,8 +102,7 @@ function createUser()
 {
     var email = document.getElementById('email').value;
     var password = document.getElementById('pass1').value;      
-    var avatar = document.getElementById('avatar').value;
-    var fullname = document.getElementById('fullname').value;  
+    var avatar = document.getElementById('avatar').value; 
     var username = document.getElementById('username').value; 
 
     if (validate())
@@ -128,7 +119,7 @@ function createUser()
         return;
       }).then(function() {
         console.log("user successfully registered");
-        post('/registration', { "email": email, "avatar": avatar, "username": username, "fullname": fullname });
+        post('/registration', { "email": email, "avatar": avatar, "username": username });
       }).then(function() {
         firebase.auth().currentUser.sendEmailVerification().then(function() {
           alert('Email Verification Sent, please check your inbox.');

@@ -201,7 +201,7 @@ app.get('/profile', checkAuth,function(req, response) {
     if(login !== null)
       {
         response.render(path.join(__dirname, '/views/profile.pug'), 
-          { fullname: login.fullname, 
+          { 
             username: login.username,
             avatar: login.avatar,
             email: login.email
@@ -227,7 +227,6 @@ app.post('/registration', function (req, res) {
   //bcrypt.hash(req.body.password, 10, function(err, hash)  {
 
       models.User.create({
-        fullname:    req.body.fullname,
         email:       req.body.email,
         avatar:      req.body.avatar,
         username:    req.body.username,
