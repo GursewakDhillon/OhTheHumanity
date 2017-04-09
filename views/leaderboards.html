@@ -21,11 +21,23 @@
 </div>
  <ul id="messages"></ul>
     <form action="" class="formmessage">
-<button class="formbutton" id="m">Check Score</button>
+<button class="formbutton" id="m" onclick="deleteOldMessages()">Check Score</button>
     </form>
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 	<script>
+	function deleteOldMessages() {
+	var oldDOMs = 'messages';
+	
+	var remove = document.getElementById(oldDOMs);
+	if (document.body.contains(remove)){
+		while (remove.hasChildNodes()) {
+				remove.removeChild(remove.lastChild);
+			}
+	}
+	console.log('deleted old messages');
+	}
+	
   $(function () {
     var socket = io();
     $('form').submit(function(){
