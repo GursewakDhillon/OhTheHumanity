@@ -1,3 +1,4 @@
+
 var widget1,widget2,widget3,widget4;
 var score;
 

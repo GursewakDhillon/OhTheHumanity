@@ -184,14 +184,29 @@ app.get('/leaderboards', checkAuth,function(request, response) {
 });
 
 app.post('/recaptcha', checkAuth,function(request, response) {
+	console.log(request.body["g-recaptcha-response"]);
+	response.end();
+        // verifyRecaptcha(request.body["g-recaptcha-response"], function(success) {
+                // if (success) {
+                        // response.end("Success!");
+                // } else {
+                        // response.end("Captcha failed, sorry.");
+                // }
+        // });
+});
+
+app.post('/classic', checkAuth,function(request, response) {
+	console.log(request.body["g-recaptcha-response"]);
+	
         verifyRecaptcha(request.body["g-recaptcha-response"], function(success) {
                 if (success) {
-                        response.end("Success!");
+                        response.redirect('/classic');
                 } else {
                         response.end("Captcha failed, sorry.");
                 }
         });
 });
+
 
 
 // registration endpoint
