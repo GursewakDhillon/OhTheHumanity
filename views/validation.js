@@ -119,10 +119,10 @@ function createUser()
         return;
       }).then(function() {
         console.log("user successfully registered");
+        alert('Email Verification Sent, please check your inbox.');        
         post('/registration', { "email": email, "avatar": avatar, "username": username });
       }).then(function() {
         firebase.auth().currentUser.sendEmailVerification().then(function() {
-          alert('Email Verification Sent, please check your inbox.');
           firebase.auth().signOut();
         });
       });
