@@ -175,15 +175,20 @@ function checkAuth(req, res, next) {
    
 };
 io.on('connection', function(socket){
-  socket.on('chat message', function(user_name){
-	   models.User.findOne({
-                where: {
-                    username: user_name,                    
-                }
+  socket.on('chat message', function(){
+	   models.User.findAll({attributes: ['fullname','Scores']
             }).then(function(user) {
-				io.emit('chat message', user.Scores);
+				var u_scores = JSON.stringify(user);
+				var reformat = user.map(function(obj){
+					var rObj = {};
+					rObj["fullname"]=obj.fullname;
+					rObj["Scores"]=obj.Scores;
+					return rObj;
+				});
 				
-			});
+			}).then(function(reformat){
+				io.emit('chat message', JSON.stringify(reformat));
+				});
     
 	
   });
