@@ -31,4 +31,14 @@ models.sequelize.sync().then(function() {
                                             rankdate:  leaderboard.rankdate });            
         }
     });
+	
+	fs.readFile(__dirname + '/testdata/leaderboards.json', function(err, data) {
+        var achievement_data = JSON.parse(data);
+        var achievements = achievement_data.achievements;
+        for (var i = 0; i < achievements.length; i++) {
+            var achievement = achievements[i];
+            models.Achievement.create( {  name: achievement.name,
+                                            description: achievement.description });            
+        }
+    });
 });
