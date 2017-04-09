@@ -180,13 +180,13 @@ io.on('connection', function(socket){
   socket.on('chat message', function(){
 	  var reformat ={};
 	  var userformat=[];
-	   models.User.findAll({attributes: ['fullname','Scores']
+	   models.User.findAll({attributes: ['username','Scores']
             }).then(function(user) {
 				
 				//var u_scores = JSON.stringify(user);
 				reformat.userformat = user.map(function(obj){
 					var rObj = {};
-					rObj["fullname"]=obj.fullname;
+					rObj["username"]=obj.username;
 					rObj["Scores"]=obj.Scores;
 					console.log(rObj);
 					return rObj;
@@ -195,7 +195,7 @@ io.on('connection', function(socket){
 				for (var i = 0; i < reformat.userformat.length; i++)
 				{
 					var empty=" has a score of: ";
-					var nameQuotation=JSON.stringify(reformat.userformat[i].fullname);
+					var nameQuotation=JSON.stringify(reformat.userformat[i].username);
 					var name=nameQuotation.replace(/['"]+/g, '')
 					var scores=JSON.stringify(reformat.userformat[i].Scores);
 					var message=name+empty+scores;

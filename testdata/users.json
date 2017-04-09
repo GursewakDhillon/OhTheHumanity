@@ -2,7 +2,6 @@
   "users": [
       {
           "id": 1,
-          "fullname": "Foo Jones",
           "email": "foo@jones.com",
           "avatar": 1,
           "username": "Foo",
@@ -12,7 +11,6 @@
       },
       {
           "id": 2,
-          "fullname": "Bar Smith",
           "email": "bar@smith.com",
           "avatar" : 1,
           "username": "Bar",
@@ -22,13 +20,21 @@
       },
       {
           "id": 3,
-          "fullname": "Ben Siggers",
           "email": "bsiggers@gmail.com",
           "avatar": 1,
-          "username": "Foo",
+          "username": "Ben",
           "credentials": "123",
           "validated": 1,
 		  "scores": 3000
-      }      
+      },
+	  {
+          "id": 4,
+          "email": "gsd340@gmail.com",
+          "avatar": 1,
+          "username": "Gursewak",
+          "credentials": "123",
+          "validated": 1,
+		  "scores": 3000
+      }
   ]
 }

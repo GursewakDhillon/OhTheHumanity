@@ -10,7 +10,7 @@ models.sequelize.sync().then(function() {
         users.forEach(function(user) {
             //console.log(user);
             
-            models.User.create( {  fullname: user.fullname, 
+            models.User.create( {   
                             id: user.id,
                             email: user.email, 
                             avatar: user.avatar, 
