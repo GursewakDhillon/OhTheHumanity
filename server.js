@@ -223,11 +223,21 @@ app.post('/recaptcha', checkAuth,function(request, response) {
 });
 
 app.post('/classic', checkAuth,function(request, response) {
-	console.log(request.body["g-recaptcha-response"]);
+	console.log(request.body);
 	
         verifyRecaptcha(request.body["g-recaptcha-response"], function(success) {
                 if (success) {
-                        response.redirect('/classic');
+					models.User.findOne({
+									where: {
+										id: req.session.user                    
+									}
+					  }).then(function(user) {
+						if(user !== null)
+						  {
+							user.increment('score', {by: 5});
+						  }
+					  });
+                    response.redirect('/classic');
                 } else {
                         response.end("Captcha failed, sorry.");
                 }
