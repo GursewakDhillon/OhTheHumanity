@@ -11,7 +11,7 @@
 	 <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
 	 <script type='text/javascript' src="recaptcha.js"></script>
 	 <script>
-	 
+		
 		var onloadCallback = function() {
 		  onloadClassic();
 		};
@@ -86,12 +86,13 @@
 
     <div class="container">
       <h1>Home</h1>
-				<form id="recaptchaForm" action="recaptcha" method="POST" data-callback="verifyRecaptcha">
+				<form action="classic" method="POST">
 					<div id="recaptcha1"></div>
-					<input type="submit" value="Submit">
+					<button class="btn btn-primary" onclick="reset()">Another Captcha!</button> 
+					<button type="submit" class="btn btn-primary">Submit my score</button>
 				</form>
-				<p id="score">0</p>
-				 <button onclick="reset()">reset</button> 
+				<p>Score: <span id="score">0</span></p>
+				 
     </div>
 
 

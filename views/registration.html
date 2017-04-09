@@ -12,51 +12,47 @@
 <div name="playerRegistration">
 <div class = "image">
    <img src="/intro.jpg" alt="intro" class = "intro-background">
-<table cellpadding="2" width="90%" class ="registation_Table" align="center"
-cellspacing="2">
+  <div id = "neon-fonts">
+   <h2 class = "welcome"><span>Welcome</span></h2>
+   <h2 class = "new_player"><span>Challenger</span></h2>
+  </div>
+<div class ="registation_Table" >
 
 
 
-<tr>
-<td colspan=4>
-<center><h2>Welcome</h2></center>
-<center><h2>Our New Challenger</h2></center>
-</td>
-</tr>
 
 
-<tr>
-<td>Username</td>
-<td><input type="text" name="username" id="username" placeholder="Username" size="30"></td>
-</tr>
-<tr>
-<td>Password</td>
-<td><input type="password" name="password" id="pass1" placeholder="Password" size="30"></td>
 
-</tr>
-<tr>
-<td>Re-password</td>
-<td><input type="password" name="repassword" placeholder="Password" id="pass2" onkeyup="checkPass(); return false;" size="30"></td>
-</tr><tr><td></td><td><span id="confirmMessage" class="confirmMessage"></span></td></tr>
+<div class = "font-setting">
 
-<tr>
-<td>Avatar</td>
-<td><input type="text" name="avatar" id="avatar" placeholder="1" size="30"></td>
-</tr>
 
-<tr>
-<td>Email</td>
-<td><input type="text" name="email" id="email" placeholder="user@gmail.com" size="30"></td>
-</tr>
-</table>
-<tr>
-<div align="center">
-<font size="5"><b><input type="reset"></b>
-<button id="registrationsubmit" type="submit" value="Submit">SignUp</button>
-</font>
-</tr>
+<label><b>Name</b></label>
+<input type="text" name="username" id="username" placeholder="Username" >
+
+<label><b>Password</b></label>
+<input type="password" name="password" id="pass1" placeholder="Password" >
+
+<label><b>Re-Pass</b></label>
+<input type="password" name="repassword" placeholder="Password" id="pass2" onkeyup="checkPass(); return false;" >
+<span id="confirmMessage" class="confirmMessage"></span>
+
+
+<label><b>Avatar</b></label>
+<input type="text" name="avatar" id="avatar" placeholder="1" >
+
+<label><b>Email</b></label>
+<input type="text" name="email" id="email" placeholder="user@gmail.com">
+
 </div>
 
+<div align="center">
+
+<button id="registrationsubmit" type="submit" value="Submit">SignUp</button>
+</font>
+
+</div>
+
+</div>
 </div>
 </div>
 </body>

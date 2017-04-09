@@ -7,8 +7,11 @@ var crypto = require('crypto');
 var models = require('./models');
 var app = express();
 var session= require('express-session');
+
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
+var pug = require('pug');
+
 
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({   // to support URL-encoded bodies
@@ -168,8 +171,7 @@ function checkAuth(req, res, next) {
     {
         return next();
     }else {
-			return next();
-            //return res.sendStatus(401);
+			return res.sendStatus(401);
      }
   
    
@@ -209,15 +211,60 @@ app.get('/leaderboards', checkAuth,function(request, response) {
   response.sendFile(path.join(__dirname, '/views/leaderboards.html'));
 });
 
+app.get('/profile', checkAuth,function(req, response) {
+  console.log(req.session.user);
+
+  models.User.findOne({
+                where: {
+                    id: req.session.user                    
+                }
+  }).then(function(login) {
+    if(login !== null)
+      {
+        response.render(path.join(__dirname, '/views/profile.pug'), 
+          { 
+            username: login.username,
+            avatar: login.avatar,
+            email: login.email
+            });
+      }
+  });
+});
+
 app.post('/recaptcha', checkAuth,function(request, response) {
+	console.log(request.body["g-recaptcha-response"]);
+	response.end();
+        // verifyRecaptcha(request.body["g-recaptcha-response"], function(success) {
+                // if (success) {
+                        // response.end("Success!");
+                // } else {
+                        // response.end("Captcha failed, sorry.");
+                // }
+        // });
+});
+
+app.post('/classic', checkAuth,function(request, response) {
+	console.log(request.body);
+	
         verifyRecaptcha(request.body["g-recaptcha-response"], function(success) {
                 if (success) {
-                        response.end("Success!");
+					models.User.findOne({
+									where: {
+										id: req.session.user                    
+									}
+					  }).then(function(user) {
+						if(user !== null)
+						  {
+							user.increment('score', {by: 5});
+						  }
+					  });
+                    response.redirect('/classic');
                 } else {
                         response.end("Captcha failed, sorry.");
                 }
         });
 });
+
 
 
 // registration endpoint
@@ -226,7 +273,6 @@ app.post('/registration', function (req, res) {
   //bcrypt.hash(req.body.password, 10, function(err, hash)  {
 
       models.User.create({
-        fullname:    req.body.fullname,
         email:       req.body.email,
         avatar:      req.body.avatar,
         username:    req.body.username,
