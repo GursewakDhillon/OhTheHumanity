@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
         User.belongsToMany(models.Achievement, {through: 'UserAchievement'});
       }
     }
->>>>>>> master
+
   });
   return User;
 };
