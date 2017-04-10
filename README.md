@@ -1,3 +1,5 @@
+#Notes for the professor/TA:
+We worked together on Saturday April 9, so all the commits from that date should be contributed by all four group members, which is not reflected in the commit message. Please note this while marking for individual weighting, thank you.
 
 #Vagrant notes
 
