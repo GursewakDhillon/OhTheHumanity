@@ -7,6 +7,18 @@ html
     h1 User Profile
     ul Username: #{username}
     ul Email: #{email}
-    ul Avatar: #{avatar}
+    ul Avatar:
+    if avatar == 1
+      img(src="/guy.png")
+    if avatar == 2
+      img(src="/man.png")
+    if avatar == 3
+      img(src="/teacher.png")
+    if avatar == 4
+      img(src="/woman.png")                
+    if avatar == 5
+      img(src="/woman2.png")
+    if avatar == 6
+      img(src="/woman3.png")            
 
     
