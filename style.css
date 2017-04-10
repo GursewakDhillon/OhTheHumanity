@@ -178,11 +178,11 @@
 #rules{
   display:none;
   position: absolute; 
-  top: 100px; 
+  top: 70px; 
   left:12%;
   font-family: neon;
   color: #FB4264;
-  font-size: 12vw;
+  font-size: 8vw;
   line-height: 9vw;
   text-shadow: 0vw 0vw 3vw #F40A35;
   padding:2px;
