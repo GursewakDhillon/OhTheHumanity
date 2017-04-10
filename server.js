@@ -218,19 +218,48 @@ io.on('connection', function(socket){
 					var rObj = {};
 					rObj["username"]=obj.username;
 					rObj["Scores"]=obj.Scores;
-					console.log(rObj);
 					return rObj;
 				});
+				//console.log(reformat);
+				var removeNull=JSON.stringify(reformat, function(key, value) {
+					// if value is null, return "" as a replacement
+					if(value === null) {
+						return 0;
+					}
+
+					// otherwise, leave the value unchanged
+					return value;
+				});
 				
-				for (var i = 0; i < reformat.userformat.length; i++)
+				
+				function predicateBy(prop){
+				   return function(a,b){
+					  if( a[prop] > b[prop]){
+						  return 1;
+					  }else if( a[prop] < b[prop] ){
+						  return -1;
+					  }
+					  return 0;
+				   }
+				}
+				
+				var sortScores =JSON.parse(removeNull);
+				sortScores.userformat.sort( predicateBy("Scores") );
+							
+				
+				
+				console.log(sortScores);
+				
+				for (var i = 0; i < sortScores.userformat.length; i++)
 				{
 					var empty=" has a score of: ";
-					var nameQuotation=JSON.stringify(reformat.userformat[i].username);
+					var nameQuotation=JSON.stringify(sortScores.userformat[i].username);
 					var name=nameQuotation.replace(/['"]+/g, '')
-					var scores=JSON.stringify(reformat.userformat[i].Scores);
+					var scores=JSON.stringify(sortScores.userformat[i].Scores);
 					var message=name+empty+scores;
-					io.emit('chat message', message);
-					;
+					//console.log(message);
+					io.emit('chat message', message);	
+					
 							
 				}
 				

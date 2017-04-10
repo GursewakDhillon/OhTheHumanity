@@ -26,15 +26,6 @@
           "credentials": "123",
           "validated": 1,
 		  "scores": 3000
-      },
-	  {
-          "id": 4,
-          "email": "gsd340@gmail.com",
-          "avatar": 1,
-          "username": "Gursewak",
-          "credentials": "123",
-          "validated": 1,
-		  "scores": 3000
       }
   ]
 }
