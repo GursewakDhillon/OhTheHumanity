@@ -37,3 +37,9 @@ Note: vagrant is now setup, which contains:
 - creation of 'ohthehumanity' database, and 'ohthehuanity' user
 - nginx install and configuration, proxying 3000->80
 
+References: these references can be found in .css files as well
+Neon Font style designed by Thomas Trinca. reference website https://codemyui.com/glowing-flicker-neon-text-effect 
+
+ all 6 avatar icons art namely guy.png, man.png, teacher.png, woman.png, woman2.png and woman3.png are created by Freepik taken from 
+   http://www.flaticon.com/packs/avatars-9 
+
