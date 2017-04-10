@@ -1,10 +1,14 @@
 <!doctype html>
 <html>
   <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="icon" href="https://v4-alpha.getbootstrap.com/favicon.ico">
     <title>Real Time Leaderboard</title>
-    
-	<link rel="stylesheet" type="text/css" href="login.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<style>      
       .formmessage input { border: 0; padding: 10px; width: 50%; margin-right: .5%; }
       .formbutton { width: auto; background: rgb(130, 224, 255); border: none; padding: 10px; }
@@ -12,9 +16,52 @@
       #messages li { padding: 5px 10px; }
       #messages li:nth-child(odd) { background: #eee; }
     </style>
+   <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+   <script type='text/javascript' src="recaptcha.js"></script>
+    <script>
+    
+    window.onload = function(){ 
+      document.getElementById("leaderboard").onclick = function () {
+        location.href = "/leaderboards";
+      }; 
+       document.getElementById("home").onclick = function () {
+        location.href = "/home";
+      }; 
+    };
+     
+   </script>
   </head>
   <body>
-  
+  <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">Navbar</a>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" id = "home" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Missions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id = "leaderboard" href="#">Leaderboards</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id = "profile" href="#">Profiles</a>
+          </li>          
+        </ul>
+       
+       
+       <form mehtod ="get" action="/logout"> 
+       <button class="btn btn-outline-success my-2 my-sm-0" id="logoutbutton" name="logout" value="logout">logout</button>
+       </form>
+      </div>
+    </nav>
+
+
   <div >
     <h1><span>Leader Board</span></h1>
     
@@ -53,6 +100,11 @@
 
   	
    
-
+   <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
   </body>
 </html>
