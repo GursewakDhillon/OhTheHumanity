@@ -5,7 +5,10 @@ module.exports = function(sequelize, DataTypes) {
     username:    DataTypes.STRING,
     credentials: DataTypes.STRING,
     validated:   DataTypes.BOOLEAN,
-	Scores:      DataTypes.INTEGER
+	Scores:      {
+    type: DataTypes.INTEGER,
+    defaultValue: 0
+  }
 
   }, {
     classMethods: {
