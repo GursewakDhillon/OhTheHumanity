@@ -306,33 +306,25 @@ app.get('/profile', checkAuth,function(req, response) {
   });
 });
 
-app.post('/recaptcha', checkAuth,function(request, response) {
-	console.log(request.body["g-recaptcha-response"]);
-	response.end();
-        // verifyRecaptcha(request.body["g-recaptcha-response"], function(success) {
-                // if (success) {
-                        // response.end("Success!");
-                // } else {
-                        // response.end("Captcha failed, sorry.");
-                // }
-        // });
-});
+function addScore(request,num){
+								models.User.findOne({
+									where: {
+										id: request.session.user                    
+									}
+					  }).then(function(user) {
+						if(user !== null)
+						  {
+							user.increment('Scores', {by: num});
+						  }
+					  });
+}
 
 app.post('/classic', checkAuth,function(request, response) {
 	console.log(request.body);
 	
         verifyRecaptcha(request.body["g-recaptcha-response"], function(success) {
                 if (success) {
-					models.User.findOne({
-									where: {
-										id: req.session.user                    
-									}
-					  }).then(function(user) {
-						if(user !== null)
-						  {
-							user.increment('score', {by: 5});
-						  }
-					  });
+									addScore(request,5);
                     response.redirect('/classic');
                 } else {
                         response.end("Captcha failed, sorry.");
@@ -340,7 +332,18 @@ app.post('/classic', checkAuth,function(request, response) {
         });
 });
 
-
+app.post('/time', checkAuth,function(request, response) {
+	console.log(request.body);
+	var score = request.body["finalScore"];
+        verifyRecaptcha(request.body["g-recaptcha-response"], function(success) {
+                if (success) {
+									addScore(request,score);
+                    response.redirect('/time');
+                } else {
+                        response.end("Captcha failed, sorry.");
+                }
+        });
+});
 
 // registration endpoint
 app.post('/registration', function (req, res) {

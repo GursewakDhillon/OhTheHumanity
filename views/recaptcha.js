@@ -17,6 +17,7 @@ var onloadClassic = function() {
 function addScore(){
 	score = score + 5;
 	document.getElementById('score').innerHTML = score;
+
 }
 
 function reset(){
@@ -31,13 +32,6 @@ var onloadTime = function() {
 };
 
 function startTimeMode(){
-	  widget1 = grecaptcha.render('recaptcha1', {
-	'sitekey' : '6LeuJxkUAAAAACp5mLL7oD8CRIq0ObIVWP9UwM2t',
-	'callback' : addScore
-  });
-}
-
-function restartTimeMode(){
 	score = 0;
 	  widget1 = grecaptcha.render('recaptcha1', {
 	'sitekey' : '6LeuJxkUAAAAACp5mLL7oD8CRIq0ObIVWP9UwM2t',
@@ -46,7 +40,7 @@ function restartTimeMode(){
 }
 
 function initTimer(){
-    var initial = 30000;
+    var initial = 20000;
     var count = initial;
     var counter; //10 will  run it every 100th of a second
     var initialMillis;
@@ -68,7 +62,10 @@ function initTimer(){
         document.getElementById("timer").innerHTML = res.toPrecision(count.toString().length) + " secs";
 		if (count <= 0){
 			count = 0;
+			document.getElementById("timer").innerHTML = "Time's up!";
 			$('#reset').prop('disabled', true);
+			$('#submit').prop('disabled', false);
+			document.getElementById("finalScore").value = score;
 		}
     }
 
@@ -78,15 +75,15 @@ function initTimer(){
         counter = setInterval(timer, 1);
     });
 
-    document.getElementById('stop').addEventListener('click', function () {
-        clearInterval(counter);
-    });
+    // document.getElementById('stop').addEventListener('click', function () {
+        // clearInterval(counter);
+    // });
 
-    document.getElementById('restart').addEventListener('click', function () {
-        clearInterval(counter);
-        count = initial;
-        displayCount(count);
-    });
+    // document.getElementById('restart').addEventListener('click', function () {
+        // clearInterval(counter);
+        // count = initial;
+        // displayCount(count);
+    // });
 
     displayCount(initial);
 }

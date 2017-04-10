@@ -75,21 +75,24 @@
     </nav>
 
     <div class="container">
-      <h1>CAPTCHA 1</h1>
-				<form id="recaptchaForm" action="recaptcha" method="POST" data-callback="verifyRecaptcha">
+      <h1>CAPTCHA</h1>
+				<form action="time" method="POST">
 					<div id="recaptcha1"></div>
-					<input type="submit" value="Submit">
+					<input id="finalScore" type="hidden" name="finalScore" value="">
+					<p>Submit your score once time is up:</p>
+					<button id="submit" type="submit" class="btn btn-primary" disabled>Submit!</button>
 				</form>
-
-				 <button id="reset" class="btn btn-primary" onclick="reset()">Another!</button> 
-    </div>
-	
+				<p>Press the start button to start the timer:</p>
+<button id="start" class="btn btn-success" onclick="startTimeMode()">Start</button>
 <span id="timer"></span>
-
-<button id="start" class="btn btn-primary" onclick="startTimeMode()">start</button>
+<p>Press the reset button to get another CAPTCHA:</p>
+<button id="reset" class="btn btn-primary" onclick="reset()">Reset!</button> 
 <p>Score: <span id="score">0</span></p>
+
+<!--
 <button id="stop">stop</button>
-<button id="restart" onclick="restartTimeMode()">restart</button>
+<button id="restart">restart</button>
+-->
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

@@ -77,13 +77,14 @@
     </nav>
 
     <div class="container">
-      <h1>Home</h1>
+      <h1>CAPTCHA</h1>
 				<form action="classic" method="POST">
 					<div id="recaptcha1"></div>
-					<button class="btn btn-primary" onclick="reset()">Another Captcha!</button> 
-					<button type="submit" class="btn btn-primary">Submit my score</button>
+					<p>Submit and get a new CAPTCHA:</p>
+					<button type="submit" class="btn btn-primary">Submit!</button>
 				</form>
-				<p>Score: <span id="score">0</span></p>
+				<p>Too difficult? Get a different CAPTCHA:</p>
+				<button class="btn btn-primary" onclick="reset()">Reset!</button> 
 				 
     </div>
 
